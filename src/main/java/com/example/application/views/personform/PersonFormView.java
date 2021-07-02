@@ -23,18 +23,19 @@ import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
 
 @Route(value = "person-form", layout = MainLayout.class)
-@PageTitle("Person Form")
+@PageTitle("Agregar Nueva Oferta")
 public class PersonFormView extends Div {
 
-    private TextField firstName = new TextField("First name");
-    private TextField lastName = new TextField("Last name");
+    private TextField firstName = new TextField("Nombre del Trabajo");
+    private TextField lastName = new TextField("Descripción");
     private EmailField email = new EmailField("Email address");
-    private DatePicker dateOfBirth = new DatePicker("Birthday");
+    private DatePicker dateOfBirth = new DatePicker("Desde");
+    private DatePicker dateTo = new DatePicker("Hasta");
     private PhoneNumberField phone = new PhoneNumberField("Phone number");
-    private TextField occupation = new TextField("Occupation");
+    private TextField occupation = new TextField("Salario");
 
-    private Button cancel = new Button("Cancel");
-    private Button save = new Button("Save");
+    private Button cancel = new Button("Cancelar");
+    private Button save = new Button("Agregar");
 
     private Binder<SamplePerson> binder = new Binder(SamplePerson.class);
 
@@ -61,13 +62,13 @@ public class PersonFormView extends Div {
     }
 
     private Component createTitle() {
-        return new H3("Personal information");
+        return new H3("Datos de la Oferta");
     }
 
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
         email.setErrorMessage("Please enter a valid email address");
-        formLayout.add(firstName, lastName, dateOfBirth, phone, email, occupation);
+        formLayout.add(firstName, lastName, dateOfBirth, dateTo, phone, email, occupation);
         return formLayout;
     }
 

@@ -21,7 +21,7 @@ import com.vaadin.flow.router.RouteAlias;
 
 @Route(value = "card-list", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
-@PageTitle("Card List")
+@PageTitle("Ofertas de Trabajo")
 public class CardListView extends Div implements AfterNavigationObserver {
 
     Grid<Person> grid = new Grid<>();
@@ -92,48 +92,48 @@ public class CardListView extends Div implements AfterNavigationObserver {
 
         // Set some data when this view is displayed.
         List<Person> persons = Arrays.asList( //
-                createPerson("https://randomuser.me/api/portraits/men/42.jpg", "John Smith", "May 8",
+                createPerson("https://randomuser.me/api/portraits/men/42.jpg", "Banco Mercantil", "May 8",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/42.jpg", "Abagail Libbie", "May 3",
+                createPerson("https://randomuser.me/api/portraits/women/42.jpg", "Empresas Polar", "May 3",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/men/24.jpg", "Alberto Raya", "May 3",
+                createPerson("https://randomuser.me/api/portraits/men/24.jpg", "Citrus Software Solutions", "May 3",
 
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/24.jpg", "Emmy Elsner", "Apr 22",
+                createPerson("https://randomuser.me/api/portraits/women/24.jpg", "Diageo", "Apr 22",
 
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/men/76.jpg", "Alf Huncoot", "Apr 21",
+                createPerson("https://randomuser.me/api/portraits/men/76.jpg", "Constructora Sambil", "Apr 21",
 
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/76.jpg", "Lidmila Vilensky", "Apr 17",
+                createPerson("https://randomuser.me/api/portraits/women/76.jpg", "Frito Lay", "Apr 17",
 
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/men/94.jpg", "Jarrett Cawsey", "Apr 17",
+                createPerson("https://randomuser.me/api/portraits/men/94.jpg", "EY Consultores", "Apr 17",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/94.jpg", "Tania Perfilyeva", "Mar 8",
+                createPerson("https://randomuser.me/api/portraits/women/94.jpg", "Bolsa de Valores de Caracas", "Mar 8",
 
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/men/16.jpg", "Ivan Polo", "Mar 5",
+                createPerson("https://randomuser.me/api/portraits/men/16.jpg", "Centro Polo", "Mar 5",
 
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/16.jpg", "Emelda Scandroot", "Mar 5",
+                createPerson("https://randomuser.me/api/portraits/women/16.jpg", "Nestlé", "Mar 5",
 
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/men/67.jpg", "Marcos Sá", "Mar 4",
+                createPerson("https://randomuser.me/api/portraits/men/67.jpg", "Calzados Apolo", "Mar 4",
 
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/67.jpg", "Jacqueline Asong", "Mar 2",
+                createPerson("https://randomuser.me/api/portraits/women/67.jpg", "Megalicor", "Mar 2",
 
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                         "1K", "500", "20")

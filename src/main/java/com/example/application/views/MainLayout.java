@@ -68,7 +68,7 @@ public class MainLayout extends AppLayout {
         HorizontalLayout logoLayout = new HorizontalLayout();
         logoLayout.setId("logo");
         logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        logoLayout.add(new Image("images/logo.png", "Citrus App logo"));
+        logoLayout.add(new Image("images/citrus-logo.png", "Citrus App logo"));
         logoLayout.add(new H1("Citrus App"));
         layout.add(logoLayout, menu);
         return layout;
@@ -84,7 +84,7 @@ public class MainLayout extends AppLayout {
     }
 
     private Component[] createMenuItems() {
-        return new Tab[]{createTab("Card List", CardListView.class), createTab("Person Form", PersonFormView.class)};
+        return new Tab[]{createTab("Ofertas de Trabajo", CardListView.class), createTab("Crear Oferta", PersonFormView.class)};
     }
 
     private static Tab createTab(String text, Class<? extends Component> navigationTarget) {
