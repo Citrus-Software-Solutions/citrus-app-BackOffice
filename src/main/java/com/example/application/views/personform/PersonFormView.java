@@ -13,26 +13,39 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
 import com.example.application.views.MainLayout;
+import com.example.application.views.cardlist.CardListView;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
+import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.component.textfield.BigDecimalField;
+import com.vaadin.flow.component.textfield.IntegerField;
+import com.vaadin.flow.component.notification.NotificationVariant;
 
-@Route(value = "person-form", layout = MainLayout.class)
+@Route(value = "new-offer", layout = MainLayout.class)
 @PageTitle("Agregar Nueva Oferta")
 public class PersonFormView extends Div {
 
-    private TextField firstName = new TextField("Nombre del Trabajo");
-    private TextField lastName = new TextField("Descripción");
+    private TextField postName = new TextField("Nombre del Trabajo");
+    private TextArea description = new TextArea("Descripción");
+    private DatePicker dateFrom = new DatePicker("Fecha de Inicio");
+    private DatePicker dateTo = new DatePicker("Fecha de Fin");
+    private BigDecimalField salary = new BigDecimalField("Salario");
+    private IntegerField vacancies = new IntegerField("Número de Vacantes");
+    private IntegerField minAge = new IntegerField("Edad mínima");
+    private IntegerField maxAge = new IntegerField("Edad máxima");
+    private RadioButtonGroup<String> gender = new RadioButtonGroup<>();
+    private ComboBox<String> status = new ComboBox<>();
+    private ComboBox<String> employer = new ComboBox<>();
+    private ComboBox<String> location = new ComboBox<>();    
     private EmailField email = new EmailField("Email address");
-    private DatePicker dateOfBirth = new DatePicker("Desde");
-    private DatePicker dateTo = new DatePicker("Hasta");
-    private PhoneNumberField phone = new PhoneNumberField("Phone number");
-    private TextField occupation = new TextField("Salario");
 
     private Button cancel = new Button("Cancelar");
     private Button save = new Button("Agregar");
@@ -50,15 +63,21 @@ public class PersonFormView extends Div {
         clearForm();
 
         cancel.addClickListener(e -> clearForm());
-        save.addClickListener(e -> {
+        save.addClickListener(e -> saveOffer() /*{
             personService.update(binder.getBean());
             Notification.show(binder.getBean().getClass().getSimpleName() + " details stored.");
             clearForm();
-        });
+        }*/);
     }
 
     private void clearForm() {
         binder.setBean(new SamplePerson());
+    }
+    
+    private void saveOffer() {
+    	Notification notification = new Notification("Oferta Agregada", 3000);
+    	notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+    	notification.open();
     }
 
     private Component createTitle() {
@@ -68,7 +87,27 @@ public class PersonFormView extends Div {
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
         email.setErrorMessage("Please enter a valid email address");
-        formLayout.add(firstName, lastName, dateOfBirth, dateTo, phone, email, occupation);
+        gender.setLabel("Género");
+        gender.setItems("Femenino", "Masculino", "Ambos");
+        status.setLabel("Estatus");
+        status.setItems("Público", "Oculto");
+        status.setPlaceholder("Seleccione...");
+        employer.setLabel("Empleador");
+        employer.setItems("Banco Mercantil", "Empresas Polar", "Citrus Software Solutions", "Diageo", "Constructora Sambil", "EY Consultores", "Nestlé", "Calzados Apolo");
+        employer.setPlaceholder("Seleccione...");
+        location.setLabel("Ubicación");
+        location.setItems("Barquisimeto", "Caracas", "Maracaibo", "Maracay", "Pto. Ordaz", "Valencia");
+        location.setPlaceholder("Seleccione...");
+        description.setPlaceholder("Descripción del trabajo...");
+        minAge.setHasControls(true);
+        minAge.setMin(10);
+        minAge.setMax(80);
+        maxAge.setHasControls(true);
+        maxAge.setMin(10);
+        maxAge.setMax(110);
+        vacancies.setHasControls(true);
+        vacancies.setMin(1);
+        formLayout.add(postName, description, employer, status, dateFrom, dateTo, gender, salary, minAge, maxAge, vacancies, location); 
         return formLayout;
     }
 
@@ -79,50 +118,6 @@ public class PersonFormView extends Div {
         buttonLayout.add(save);
         buttonLayout.add(cancel);
         return buttonLayout;
-    }
-
-    private static class PhoneNumberField extends CustomField<String> {
-        private ComboBox<String> countryCode = new ComboBox<>();
-        private TextField number = new TextField();
-
-        public PhoneNumberField(String label) {
-            setLabel(label);
-            countryCode.setWidth("120px");
-            countryCode.setPlaceholder("Country");
-            countryCode.setPattern("\\+\\d*");
-            countryCode.setPreventInvalidInput(true);
-            countryCode.setItems("+354", "+91", "+62", "+98", "+964", "+353", "+44", "+972", "+39", "+225");
-            countryCode.addCustomValueSetListener(e -> countryCode.setValue(e.getDetail()));
-            number.setPattern("\\d*");
-            number.setPreventInvalidInput(true);
-            HorizontalLayout layout = new HorizontalLayout(countryCode, number);
-            layout.setFlexGrow(1.0, number);
-            add(layout);
-        }
-
-        @Override
-        protected String generateModelValue() {
-            if (countryCode.getValue() != null && number.getValue() != null) {
-                String s = countryCode.getValue() + " " + number.getValue();
-                return s;
-            }
-            return "";
-        }
-
-        @Override
-        protected void setPresentationValue(String phoneNumber) {
-            String[] parts = phoneNumber != null ? phoneNumber.split(" ", 2) : new String[0];
-            if (parts.length == 1) {
-                countryCode.clear();
-                number.setValue(parts[0]);
-            } else if (parts.length == 2) {
-                countryCode.setValue(parts[0]);
-                number.setValue(parts[1]);
-            } else {
-                countryCode.clear();
-                number.clear();
-            }
-        }
     }
 
 }

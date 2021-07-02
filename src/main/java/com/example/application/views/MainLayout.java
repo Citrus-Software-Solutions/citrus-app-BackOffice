@@ -44,7 +44,7 @@ public class MainLayout extends AppLayout {
     private Component createHeaderContent() {
         HorizontalLayout layout = new HorizontalLayout();
         layout.setClassName("sidemenu-header");
-        layout.getThemeList().set("dark", true);
+        layout.getThemeList().set("dark", false);
         layout.setWidthFull();
         layout.setSpacing(false);
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
