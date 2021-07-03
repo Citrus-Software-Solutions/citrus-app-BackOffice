@@ -2,7 +2,7 @@ package com.example.application.views.cardlist;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.application.views.MainLayout;
+import com.example.application.views.cardlist.MainLayout2;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vaadin.example.rest.data.RestClientService;
 import com.vaadin.flow.component.button.Button;
@@ -14,7 +14,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @PageTitle("In-Memory JSON | Vaadin REST Examples")
-@Route(value = "in-memory-json", layout = MainLayout.class)
+@Route(value = "in-memory-json", layout = MainLayout2.class)
 public class InMemoryJSONView extends Main {
 
 	public InMemoryJSONView(@Autowired RestClientService service) {

@@ -1,11 +1,18 @@
 package com.example.application.views.cardlist;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -18,14 +25,15 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.router.RouteAlias;
+import com.example.application.views.*;
 
 @Route(value = "card-list", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 @PageTitle("Ofertas de Trabajo")
 public class CardListView extends Div implements AfterNavigationObserver {
-
+	
     Grid<Person> grid = new Grid<>();
-
+    rest RestService = new rest();
     public CardListView() {
         addClassName("card-list-view");
         setSizeFull();
@@ -33,6 +41,9 @@ public class CardListView extends Div implements AfterNavigationObserver {
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS);
         grid.addComponentColumn(person -> createCard(person));
         add(grid);
+        
+        add(new H1("prueba"));
+        
     }
 
     private HorizontalLayout createCard(Person person) {
