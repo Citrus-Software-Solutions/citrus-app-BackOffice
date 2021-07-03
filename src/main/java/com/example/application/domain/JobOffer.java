@@ -18,7 +18,7 @@ public class JobOffer {
     private FinishingDate finishingDate;
     private HourlyRate hourlyRate;
     private JobOfferStatus status;
-    //private Employee employee;
+	private Employee employee;
     
     public JobOfferId getId() {
     	return id;
@@ -89,5 +89,13 @@ public class JobOffer {
 
 	public void setHourlyRate(HourlyRate hourlyRate) {
 		this.hourlyRate = hourlyRate;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 }
