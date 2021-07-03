@@ -40,9 +40,9 @@ public class CardListView extends Div implements AfterNavigationObserver {
         card.addClassName("card");
         card.setSpacing(false);
         card.getThemeList().add("spacing-s");
-
+        /*
         Image image = new Image();
-        image.setSrc(person.getImage());
+        image.setSrc(person.getImage()); */
         VerticalLayout description = new VerticalLayout();
         description.addClassName("description");
         description.setSpacing(false);
@@ -66,24 +66,24 @@ public class CardListView extends Div implements AfterNavigationObserver {
         actions.addClassName("actions");
         actions.setSpacing(false);
         actions.getThemeList().add("spacing-s");
-
-        Icon likeIcon = VaadinIcon.HEART.create();
-        likeIcon.addClassName("icon");
+        /*
+        Icon likeIcon = VaadinIcon.MAP_MARKER.create();
+        likeIcon.addClassName("icon"); 
         Span likes = new Span(person.getLikes());
-        likes.addClassName("likes");
-        Icon commentIcon = VaadinIcon.COMMENT.create();
+        likes.addClassName("likes"); */
+        Icon commentIcon = VaadinIcon.USERS.create();
         commentIcon.addClassName("icon");
         Span comments = new Span(person.getComments());
         comments.addClassName("comments");
-        Icon shareIcon = VaadinIcon.CONNECT.create();
+        Icon shareIcon = VaadinIcon.CALENDAR.create();
         shareIcon.addClassName("icon");
         Span shares = new Span(person.getShares());
         shares.addClassName("shares");
 
-        actions.add(likeIcon, likes, commentIcon, comments, shareIcon, shares);
+        actions.add(commentIcon, comments, shareIcon, shares); //likeIcon, likes, 
 
         description.add(header, post, actions);
-        card.add(image, description);
+        card.add(/*image,*/ description);
         return card;
     }
 
@@ -92,61 +92,52 @@ public class CardListView extends Div implements AfterNavigationObserver {
 
         // Set some data when this view is displayed.
         List<Person> persons = Arrays.asList( //
-                createPerson("https://randomuser.me/api/portraits/men/42.jpg", "Banco Mercantil", "May 8",
+                createPerson( "Analista de Finanzas - Banco Mercantil", "Público",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/42.jpg", "Empresas Polar", "May 3",
+                        "Caracas", "2", "May 8 - May 15"),
+                createPerson("Operador Industrial - Empresas Polar", "Público",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/men/24.jpg", "Citrus Software Solutions", "May 3",
-
+                        "Maracaibo", "4", "May 3 - Jun 2"),
+                createPerson("Desarrollador Front-End - Citrus Software Solutions", "Oculto",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/24.jpg", "Diageo", "Apr 22",
-
+                        "Valencia", "1", "May 3 - May 24"),
+                createPerson("Gerente Regional de Control de Suministros - Diageo", "Público",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/men/76.jpg", "Constructora Sambil", "Apr 21",
-
+                        "Valencia", "8", "Apr 22 - May 15"),
+                createPerson("Ingeniero de Infraestructuras - Constructora Sambil", "Oculto",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/76.jpg", "Frito Lay", "Apr 17",
-
+                        "Caracas", "6", "Apr 21 - May 1"),
+                createPerson("Operario de Limpieza - Frito Lay", "Oculto",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/men/94.jpg", "EY Consultores", "Apr 17",
+                        "Barquisimeto", "10", "Apr 17 - Apr 24"),
+                createPerson("Cosultor de Mercadeo Senior - EY Consultores", "Público",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/94.jpg", "Bolsa de Valores de Caracas", "Mar 8",
-
+                        "Maracaibo", "3", "Apr 17 - Apr 20"),
+                createPerson("Técnico de Computación - Bolsa de Valores de Caracas", "Oculto",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/men/16.jpg", "Centro Polo", "Mar 5",
-
+                        "Caracas", "2", "Mar 8 - Mar 22"),
+                createPerson("Guardia de Seguridad - Centro Polo", "Público",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/16.jpg", "Nestlé", "Mar 5",
-
+                        "Maracaibo", "5", "Mar 5 - Mar 12"),
+                createPerson("Maestro Chocolatero - Nestlé", "Público",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/men/67.jpg", "Calzados Apolo", "Mar 4",
-
+                        "Maracay", "1", "Mar 5 - Mar 19"),
+                createPerson("Cajero Central - Calzados Apolo", "Oculto",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20"),
-                createPerson("https://randomuser.me/api/portraits/women/67.jpg", "Megalicor", "Mar 2",
-
+                        "Caracas", "1", "Mar 4 - Mar 10"),
+                createPerson("Bartender - Megalicor", "Público",
                         "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                        "1K", "500", "20")
+                        "Barquisimeto", "1", "Mar 2 - Mar 9")
 
         );
 
         grid.setItems(persons);
     }
 
-    private static Person createPerson(String image, String name, String date, String post, String likes,
+    private static Person createPerson(/*String image,*/ String name, String date, String post, String likes,
             String comments, String shares) {
         Person p = new Person();
-        p.setImage(image);
+        //p.setImage(image);
         p.setName(name);
         p.setDate(date);
         p.setPost(post);
