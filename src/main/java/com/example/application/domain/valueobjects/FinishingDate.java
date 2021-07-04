@@ -3,13 +3,13 @@ package com.example.application.domain.valueobjects;
 import java.util.Date;
 
 public class FinishingDate {
-	private Date value;
+	private String value;
 	
-	public FinishingDate(Date value) {
+	public FinishingDate(String value) {
 		this.value = value;
 	}
 	
-	public Date getValue() {
+	public String getValue() {
 		return this.value;
 	}
 }

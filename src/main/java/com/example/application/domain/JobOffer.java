@@ -98,4 +98,19 @@ public class JobOffer {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+	
+	public static JobOffer createJobOffer (Title title, Employer employer,
+				JobOfferStatus status, JobOfferDescription description,
+				StartingDate startingDate, FinishingDate finishingDate) {
+	JobOffer j = new JobOffer();
+	j.setTitle(title);
+	j.setEmployer(employer);
+	j.setStatus(status);
+	j.setDescription(description);
+	j.setStartingDate(startingDate);
+	j.setFinishingDate(finishingDate);		
+
+	return j; 
+	}
+	
 }

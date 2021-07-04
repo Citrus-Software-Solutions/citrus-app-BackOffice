@@ -68,4 +68,18 @@ public class Person {
     public void setShares(String shares) {
         this.shares = shares;
     }
+    
+    public static Person createPerson(/*String image,*/ String name, String date, String post, String likes,
+            String comments, String shares) {
+        Person p = new Person();
+        //p.setImage(image);
+        p.setName(name);
+        p.setDate(date);
+        p.setPost(post);
+        p.setLikes(likes);
+        p.setComments(comments);
+        p.setShares(shares);
+
+        return p;
+    }
 }
