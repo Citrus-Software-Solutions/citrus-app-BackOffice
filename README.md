@@ -1,29 +1,34 @@
-# Citrus App: Vaadin UI
+<p align="center">
+  <h1 align="center"/>Citrus App Vaadin Front End</h1>
+</p>
 
+## Description
 Vaadin UI for Citrus App provides a front end to the application.
 
-### Built with
-
+## Installation & Requirements
 * [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 * [Vaadin](https://vaadin.com/)
 * [Maven](https://maven.apache.org/download.cgi)
 * [Eclipse IDE 2021-06 4.20.0](https://www.eclipse.org/downloads/)
 
-### Running the application
+## Running the app
 The project is a standard Maven project. To run it from the command line,
 type `mvnw` (Windows), or `./mvnw` (Mac & Linux), then open
 http://localhost:8080 in your browser.
 
-You can also import the project to your IDE of choice as you would with any
-Maven project. Read more on [how to set up a development environment for
-Vaadin projects](https://vaadin.com/docs/latest/guide/install) (Windows, Linux, macOS).
+## Test (Not ready yet)
+```bash
+# unit tests
 
-## Deploying to Production
-To create a production build, call `mvnw clean package -Pproduction` (Windows),
-or `./mvnw  clean package -Pproduction` (Mac & Linux).
-This will build a JAR file with all the dependencies and front-end resources,
-ready to be deployed. The file can be found in the `target` folder after the build completes.
+```
 
-Once the JAR file is built, you can run it using
-`java -jar target/myapp-1.0-SNAPSHOT.jar` (NOTE, replace 
-`myapp-1.0-SNAPSHOT.jar` with the name of your jar).
+## Citrus Front End Developers
+<table align="center">
+  <tbody><tr>
+    <td align="center"><a href="https://github.com/hidangel7" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/64429270?v=4" width="150px;" alt="" style="max-width:100%;"><br><sub><b>Angel Hidalgo</b></sub></a><br><a href="https://github.com/Citrus-Software-Solutions/citrus-app-BackOffice/commits?author=hidangel7" title="Commits"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+    <td align="center"><a href="https://github.com/gctv01"><img src="https://avatars.githubusercontent.com/u/39320335?v=4" width="150px;" alt="" style="max-width:100%;"><br><sub><b>Giancarlo Tricerri</b></sub></a><br><a href="https://github.com/Citrus-Software-Solutions/citrus-app-BackOffice/commits?author=gctv01" title="Documentation"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+    <td align="center"><a href="https://github.com/RafaDVB" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/38695331?v=4" width="150px;" alt="" style="max-width:100%;"><br><sub><b>Rafael Villaseñor</b></sub></a><br><a href="https://github.com/Citrus-Software-Solutions/citrus-app-BackOffice/commits?author=RafaDVB" title="Documentation"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+  </tr>
+</tbody></table>
+
+Everyone is welcome to contribute code via pull requests, to file issues on GitHub, to fix bugs that people have filed, to add to our documentation, or to help out in any other way.
