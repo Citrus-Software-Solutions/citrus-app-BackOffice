@@ -1,5 +1,6 @@
 package com.example.application.views.cardlist;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import com.example.application.application_layer.ListJobOffers;
@@ -11,9 +12,16 @@ import com.example.application.domain.valueobjects.JobOfferDescription;
 import com.example.application.domain.valueobjects.JobOfferStatus;
 import com.example.application.domain.valueobjects.StartingDate;
 import com.example.application.domain.valueobjects.Title;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
+
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -26,6 +34,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.router.RouteAlias;
+import com.example.application.views.*;
 
 @Route(value = "card-list", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
@@ -41,6 +50,19 @@ public class CardListView extends Div implements AfterNavigationObserver {
         grid2.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS);
         grid2.addComponentColumn(offer -> createCard(offer));
         add(grid2);
+	
+    Grid<Person> grid = new Grid<>();
+    rest RestService = new rest();
+    public CardListView() {
+        addClassName("card-list-view");
+        setSizeFull();
+        grid.setHeight("100%");
+        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS);
+        grid.addComponentColumn(person -> createCard(person));
+        add(grid);
+        
+        add(new H1("prueba"));
+        
     }
 
     private HorizontalLayout createCard(JobOffer offer) {
