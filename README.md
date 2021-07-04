@@ -1,9 +1,15 @@
-# Citrus App
+# Citrus App: Vaadin UI
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+Vaadin UI for Citrus App provides a front end to the application.
 
-## Running the application
+### Built with
+
+* [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+* [Vaadin](https://vaadin.com/)
+* [Maven](https://maven.apache.org/download.cgi)
+* [Eclipse IDE 2021-06 4.20.0](https://www.eclipse.org/downloads/)
+
+### Running the application
 The project is a standard Maven project. To run it from the command line,
 type `mvnw` (Windows), or `./mvnw` (Mac & Linux), then open
 http://localhost:8080 in your browser.
@@ -21,24 +27,3 @@ ready to be deployed. The file can be found in the `target` folder after the bui
 Once the JAR file is built, you can run it using
 `java -jar target/myapp-1.0-SNAPSHOT.jar` (NOTE, replace 
 `myapp-1.0-SNAPSHOT.jar` with the name of your jar).
-
-## Project structure
-
-- `MainView.java` in `src/main/java` contains the navigation setup (i.e., the 
-  side/top bar and the main menu). This setup uses 
-  [App Layout](https://vaadin.com/components/vaadin-app-layout).
-- `views` package in `src/main/java` contains the server-side Java views of your application.
-- `views` folder in `frontend/` contains the client-side JavaScript views of your application.
-- `themes` folder in `frontend/`  contains the custom CSS styles.
-
-## Useful links
-
-- Read the documentation at [vaadin.com/docs](https://vaadin.com/docs).
-- Follow the tutorials at [vaadin.com/tutorials](https://vaadin.com/tutorials).
-- Watch training videos and get certified at [vaadin.com/learn/training]( https://vaadin.com/learn/training).
-- Create new projects at [start.vaadin.com](https://start.vaadin.com/).
-- Search UI components and their usage examples at [vaadin.com/components](https://vaadin.com/components).
-- Find a collection of solutions to common use cases in [Vaadin Cookbook](https://cookbook.vaadin.com/).
-- Find Add-ons at [vaadin.com/directory](https://vaadin.com/directory).
-- Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/vaadin) or join our [Discord channel](https://discord.gg/MYFq5RTbBn).
-- Report issues, create pull requests in [GitHub](https://github.com/vaadin/).
