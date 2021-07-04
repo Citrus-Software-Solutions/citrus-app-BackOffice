@@ -31,7 +31,7 @@ import com.vaadin.flow.data.provider.DataProvider;
  */
 @SuppressWarnings("serial")
 @Service
-public class RestClientService implements Serializable {
+public class RestClientService implements Serializable, IRestClientService {
 
 	/**
 	 * The port changes depending on where we deploy the app
