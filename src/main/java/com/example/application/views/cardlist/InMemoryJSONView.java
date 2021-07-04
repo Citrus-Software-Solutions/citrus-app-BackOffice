@@ -26,9 +26,16 @@ public class InMemoryJSONView extends Main {
 		final Grid<JsonNode> postsGrid = new Grid<JsonNode>();
 
 		postsGrid.addColumn(node -> node.get("id")).setHeader("Id").setTextAlign(ColumnTextAlign.END);
-		postsGrid.addColumn(node -> node.get("name")).setHeader("Post title");
-		postsGrid.addColumn(node -> node.get("description")).setHeader("Post body");
-
+		postsGrid.addColumn(node -> node.get("name")).setHeader("Name");
+		postsGrid.addColumn(node -> node.get("description")).setHeader("Description");
+		postsGrid.addColumn(node -> node.get("salary")).setHeader("salary");
+		postsGrid.addColumn(node -> node.get("status")).setHeader("status");
+		postsGrid.addColumn(node -> node.get("available_Vacans")).setHeader("Vacantes disponibles");
+		postsGrid.addColumn(node -> node.get("min_Age")).setHeader("Edad mínima");
+		postsGrid.addColumn(node -> node.get("max_Age")).setHeader("Edad máxima");
+		postsGrid.addColumn(node -> node.get("gender")).setHeader("Género");
+		postsGrid.addColumn(node -> node.get("date_Begin")).setHeader("Fecha Inicio");
+		postsGrid.addColumn(node -> node.get("date_End")).setHeader("Fecha Fin");
 		// Fetch all data and show
 		final Button fetchPosts = new Button("Fetch all posts", e -> postsGrid.setItems(service.getAllPosts()));
 
