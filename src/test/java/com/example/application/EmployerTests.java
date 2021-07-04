@@ -17,7 +17,8 @@ import com.example.application.domain.valueobjects.UserName;
 class EmployerTests {
 	@Test
 	void idIsPositive() {
-		Employer employer = new Employer();
+		FullName fullName = new FullName("Duke Nukem");
+		Employer employer = new Employer(fullName);
 		
 		employer.setId(new UserId(-1));
 		
@@ -26,7 +27,8 @@ class EmployerTests {
 	
 	@Test
 	void userNameInsert() {
-		Employer employer = new Employer();
+		FullName fullName = new FullName("Duke Nukem");
+		Employer employer = new Employer(fullName);
 		
 		employer.setName(new UserName("dukenukem97"));
 		
@@ -35,7 +37,8 @@ class EmployerTests {
 	
 	@Test
 	void emailInsert() {
-		Employer employer = new Employer();
+		FullName fullName = new FullName("Duke Nukem");
+		Employer employer = new Employer(fullName);
 		
 		employer.setEmail(new Email("duke@mail.com"));
 		
@@ -44,16 +47,16 @@ class EmployerTests {
 	
 	@Test
 	void fullNameInsert() {
-		Employer employer = new Employer();
-		
-		employer.setFullName(new FullName("Duke Nukem"));
+		FullName fullName = new FullName("Duke Nukem");
+		Employer employer = new Employer(fullName);
 		
 		assertNotNull(employer.getFullName());
 	}
 	
 	@Test
 	void locationInsert() {
-		Employer employer = new Employer();
+		FullName fullName = new FullName("Duke Nukem");
+		Employer employer = new Employer(fullName);
 		Location location = new Location(new LocationId(1), new LocationName("Manhattan"), new LocationType("City"));
 		
 		employer.setLocation(location);

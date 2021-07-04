@@ -6,6 +6,7 @@ import com.example.application.domain.Employee;
 import com.example.application.domain.Employer;
 import com.example.application.domain.JobOffer;
 import com.example.application.domain.valueobjects.FinishingDate;
+import com.example.application.domain.valueobjects.FullName;
 import com.example.application.domain.valueobjects.JobOfferDescription;
 import com.example.application.domain.valueobjects.JobOfferId;
 import com.example.application.domain.valueobjects.StartingDate;
@@ -19,16 +20,17 @@ import static org.junit.Assert.*;
 class JobOfferTests {
 	@Test
 	void createOffer() {
+		FullName fullName = new FullName("Duke Nukem");
 		JobOffer offer = new JobOffer();
-		Employer employer = new Employer();
+		Employer employer = new Employer(fullName);
 		
 		employer.setId(new UserId(1));
 		
 		offer.setId(new JobOfferId(1));
 		offer.setTitle(new Title("Software Testing"));
 		offer.setDescription(new JobOfferDescription("This is some terrible software, please test it!"));
-		offer.setStartingDate(new StartingDate(new Date(200000)));
-		offer.setFinishingDate(new FinishingDate(new Date(200001)));
+		offer.setStartingDate(new StartingDate("2012-12-12"));
+		offer.setFinishingDate(new FinishingDate("2012-12-15"));
 		offer.setEmployer(employer);
 		
 		assertNotNull(offer.getId());
