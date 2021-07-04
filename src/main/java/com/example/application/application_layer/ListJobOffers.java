@@ -2,8 +2,13 @@ package com.example.application.application_layer;
 
 import java.util.Arrays;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.Date;
-import java.text.SimpleDateFormat; 
+import java.text.SimpleDateFormat;
+
+import com.vaadin.example.rest.data.RestClientService;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.example.application.domain.Employer;
@@ -17,6 +22,7 @@ import com.example.application.domain.valueobjects.StartingDate;
 import com.example.application.domain.valueobjects.Title;
 import com.example.application.domain.valueobjects.FullName;
 import com.example.application.views.cardlist.Person;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public class ListJobOffers {
 	/*
@@ -35,8 +41,21 @@ public class ListJobOffers {
 	}
 	*/
 	
-	public static List<JobOffer> listAllOffers() {
-		List<JobOffer> offers = Arrays.asList( //
+	public static List<JobOffer> listAllOffers(@Autowired RestClientService service) {
+		
+		List<JobOffer> offers = null;
+		
+		for(JsonNode i:service.getAllPosts()) {
+			offers.add(JobOffer.createJobOffer( new Title(i.get("name").asText() ), 
+								new Employer(new FullName("Banco Mercantil")),
+								new JobOfferStatus( i.get("status").asText() ),
+		                        new JobOfferDescription( i.get("description").asText() ),
+		                        new StartingDate( i.get("date_Begin").asText() ),
+		                        new FinishingDate( i.get("date_End").asText() )
+		                        ));
+		}
+		
+		/*List<JobOffer> offers = Arrays.asList( //
 				JobOffer.createJobOffer( new Title("Analista de Finanzas"), 
 								new Employer(new FullName("Banco Mercantil")),
 								new JobOfferStatus("Público"),
@@ -85,7 +104,7 @@ public class ListJobOffers {
 		                        new FinishingDate("15-05-2021")
 		                        )
                         
-        );
+        );*/
 
         return offers;
 	}

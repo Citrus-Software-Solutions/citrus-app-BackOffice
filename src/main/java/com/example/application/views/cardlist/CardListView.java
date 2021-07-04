@@ -50,10 +50,11 @@ public class CardListView extends Div implements AfterNavigationObserver {
         grid2.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS);
         grid2.addComponentColumn(offer -> createCard(offer));
         add(grid2);
-	
+    }
+
     Grid<Person> grid = new Grid<>();
     rest RestService = new rest();
-    public CardListView() {
+    /*public CardListView() {
         addClassName("card-list-view");
         setSizeFull();
         grid.setHeight("100%");
@@ -63,7 +64,7 @@ public class CardListView extends Div implements AfterNavigationObserver {
         
         add(new H1("prueba"));
         
-    }
+    }*/
 
     private HorizontalLayout createCard(JobOffer offer) {
         HorizontalLayout card = new HorizontalLayout();
