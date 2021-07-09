@@ -10,6 +10,7 @@ Vaadin UI for Citrus App provides a front end to the application.
 * [Vaadin](https://vaadin.com/)
 * [Maven](https://maven.apache.org/download.cgi)
 * [Eclipse IDE 2021-06 4.20.0](https://www.eclipse.org/downloads/)
+* Vaadin Plug-in for Eclipse (*required when using the Eclipse IDE*)
 
 ## Running the app
 The project is a standard Maven project. To run it from the command line,
