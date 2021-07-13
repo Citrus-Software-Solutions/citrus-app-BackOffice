@@ -3,13 +3,16 @@
 </p>
 
 ## Description
-Vaadin UI for Citrus App provides a front end to the application.
+Vaadin UI for Citrus App provides a front end to this job finder application. 
+
+This repository contains the user interface for the Backoffice of the app.
 
 ## Installation & Requirements
 * [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 * [Vaadin](https://vaadin.com/)
 * [Maven](https://maven.apache.org/download.cgi)
 * [Eclipse IDE 2021-06 4.20.0](https://www.eclipse.org/downloads/)
+* Vaadin Plug-in for Eclipse (*required when using the Eclipse IDE*)
 
 ## Running the app
 The project is a standard Maven project. To run it from the command line,
@@ -32,3 +35,23 @@ http://localhost:8080 in your browser.
 </tbody></table>
 
 Everyone is welcome to contribute code via pull requests, to file issues on GitHub, to fix bugs that people have filed, to add to our documentation, or to help out in any other way.
+
+## References
+
+Framework Vaadin 14 Documentation – Vaadin
+https://vaadin.com/docs/v14/guide/introduction
+
+---
+
+Domain-Driven Design and the Hexagonal Architecture - Vaadin Tutorials
+https://vaadin.com/learn/tutorials/ddd/ddd_and_hexagonal
+
+---
+
+Java Vaadin 14 Frontend Development - Zsolt Pelyhe
+https://www.youtube.com/watch?v=pvSqhLUQ6i0
+
+---
+
+Example of using REST services in a Vaadin application - Thomas Mattsson, Anastasia Smirnova, Joacim Päivärinne
+https://github.com/vaadin/vaadin-rest-example
