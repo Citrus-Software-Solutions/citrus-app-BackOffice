@@ -76,8 +76,8 @@ public class CardListView extends Div implements AfterNavigationObserver {
         date.addClassName("date");        
         header.add(name, date);
 
-        Span post = new Span(offer.getDescription().getValue());
-        post.addClassName("post");
+        /*Span post = new Span(offer.getDescription().getValue());
+        post.addClassName("post");*/
 
         HorizontalLayout actions = new HorizontalLayout();
         actions.addClassName("actions");
@@ -96,13 +96,13 @@ public class CardListView extends Div implements AfterNavigationObserver {
         
         Icon shareIcon = VaadinIcon.CALENDAR.create();
         shareIcon.addClassName("icon");
-        String dateRange = "Del  " + offer.getStartingDate().getValue() + "   al   " + offer.getFinishingDate().getValue(); 
+        String dateRange = "Hasta el " + offer.getDeadline().getValue(); 
         Span shares = new Span(dateRange);
         shares.addClassName("dates");
 
         actions.add(shareIcon, shares); //likeIcon, likes, commentIcon, comments, 
 
-        description.add(header, post, actions);
+        description.add(header, actions);
         card.add(/*image,*/ description);
         return card;
     }

@@ -1,9 +1,9 @@
 package com.citrus.backoffice.joboffer.domain.valueobjects;
 
-public class FinishingDate {
+public class Deadline {
 	private String value;
 	
-	public FinishingDate(String value) {
+	public Deadline(String value) {
 		this.value = value;
 	}
 	
