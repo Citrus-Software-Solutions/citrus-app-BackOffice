@@ -16,6 +16,21 @@ public class JobApplication {
 	public JobApplication(ApplicationId id) {
 		this.id = id;
 	}
+	
+	public static JobApplication createApplication(
+			ApplicationId id,
+			ApplicationDate date,
+			Employee employee,
+			JobOffer jobOffer,
+			ApplicationStatus status) {
+		var ja = new JobApplication(id);
+		ja.setDate(date);
+		ja.setEmployee(employee);
+		ja.setJobOffer(jobOffer);
+		ja.setStatus(status);
+		
+		return ja;
+	}
 
 	public ApplicationId getId() {
 		return id;
