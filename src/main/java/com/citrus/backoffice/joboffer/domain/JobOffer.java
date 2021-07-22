@@ -2,7 +2,7 @@ package com.citrus.backoffice.joboffer.domain;
 
 import com.citrus.backoffice.employee.domain.Employee;
 import com.citrus.backoffice.employer.domain.Employer;
-import com.citrus.backoffice.joboffer.domain.valueobjects.FinishingDate;
+import com.citrus.backoffice.joboffer.domain.valueobjects.Deadline;
 import com.citrus.backoffice.joboffer.domain.valueobjects.HourlyRate;
 import com.citrus.backoffice.joboffer.domain.valueobjects.JobOfferDescription;
 import com.citrus.backoffice.joboffer.domain.valueobjects.JobOfferId;
@@ -14,11 +14,13 @@ import com.citrus.backoffice.shared.domain.Location;
 public class JobOffer {
     private JobOfferId id;
     private Title title;
+    @Deprecated
     private JobOfferDescription description;
     private Employer employer;
     private Location location;
+    @Deprecated
     private StartingDate startingDate;
-    private FinishingDate finishingDate;
+    private Deadline deadline;
     private HourlyRate hourlyRate;
     private JobOfferStatus status;
 	private Employee employee;
@@ -70,12 +72,12 @@ public class JobOffer {
 		this.startingDate = starting;
 	}
 
-	public FinishingDate getFinishingDate() {
-		return finishingDate;
+	public Deadline getDeadline() {
+		return deadline;
 	}
 
-	public void setFinishingDate(FinishingDate finishingDate) {
-		this.finishingDate = finishingDate;
+	public void setDeadline(Deadline deadline) {
+		this.deadline = deadline;
 	}
 
 	public JobOfferStatus getStatus() {
@@ -103,15 +105,12 @@ public class JobOffer {
 	}
 	
 	public static JobOffer createJobOffer (Title title, Employer employer,
-				JobOfferStatus status, JobOfferDescription description,
-				StartingDate startingDate, FinishingDate finishingDate) {
+				JobOfferStatus status, Deadline deadline) {
 	JobOffer j = new JobOffer();
 	j.setTitle(title);
 	j.setEmployer(employer);
 	j.setStatus(status);
-	j.setDescription(description);
-	j.setStartingDate(startingDate);
-	j.setFinishingDate(finishingDate);		
+	j.setDeadline(deadline);		
 
 	return j; 
 	}

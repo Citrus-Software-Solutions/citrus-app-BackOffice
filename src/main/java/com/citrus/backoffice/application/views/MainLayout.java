@@ -3,6 +3,7 @@ package com.citrus.backoffice.application.views;
 import java.util.Optional;
 
 import com.citrus.backoffice.application.views.cardlist.CardListView;
+import com.citrus.backoffice.application.views.interviewlist.InterviewListView;
 import com.citrus.backoffice.application.views.personform.PersonFormView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
@@ -82,7 +83,9 @@ public class MainLayout extends AppLayout {
     }
 
     private Component[] createMenuItems() {
-        return new Tab[]{createTab("Ofertas de Trabajo", CardListView.class), createTab("Crear Oferta", PersonFormView.class)};
+        return new Tab[]{createTab("Ofertas de Trabajo", CardListView.class),
+        		createTab("Crear Oferta", PersonFormView.class),
+        		createTab("Entrevistas", InterviewListView.class)};
     }
 
     private static Tab createTab(String text, Class<? extends Component> navigationTarget) {

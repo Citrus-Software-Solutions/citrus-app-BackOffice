@@ -1,5 +1,6 @@
 @import url('./main-layout.css');
 @import url('./views/card-list-view.css');
+@import url('./views/interview-list-view.css');
 @import url('./views/person-form-view.css');
 @import url('lumo-css-framework/all-classes.css');    html {
       --lumo-base-color: #fbf9f9;
