@@ -2,7 +2,7 @@ package com.citrus.backoffice.application.views;
 
 import java.util.Optional;
 
-import com.citrus.backoffice.application.views.applicantlist.ApplicantListView;
+import com.citrus.backoffice.application.views.applicant.ApplicantListView;
 import com.citrus.backoffice.application.views.cardlist.CardListView;
 import com.citrus.backoffice.application.views.interviewlist.InterviewListView;
 import com.citrus.backoffice.application.views.personform.PersonFormView;

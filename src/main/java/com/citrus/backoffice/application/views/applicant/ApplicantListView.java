@@ -1,4 +1,4 @@
-package com.citrus.backoffice.application.views.applicantlist;
+package com.citrus.backoffice.application.views.applicant;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,6 +7,7 @@ import java.util.List;
 import com.citrus.backoffice.application.views.MainLayout;
 import com.citrus.backoffice.employee.domain.Employee;
 import com.citrus.backoffice.employee.domain.valueobjects.EmployeeName;
+import com.citrus.backoffice.jobapplication.app.JobApplicationServiceMock;
 import com.citrus.backoffice.jobapplication.domain.JobApplication;
 import com.citrus.backoffice.jobapplication.domain.valueobjects.ApplicationDate;
 import com.citrus.backoffice.jobapplication.domain.valueobjects.ApplicationId;
@@ -14,6 +15,7 @@ import com.citrus.backoffice.jobapplication.domain.valueobjects.ApplicationStatu
 import com.citrus.backoffice.joboffer.domain.JobOffer;
 import com.citrus.backoffice.joboffer.domain.valueobjects.Title;
 import com.citrus.backoffice.shared.domain.valueobjects.UserId;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
@@ -61,7 +63,7 @@ public class ApplicantListView extends Div implements AfterNavigationObserver {
         Span name = new Span(fullTitle);
         name.addClassName("name");
 
-        Button details = new Button("Ver Detalles");
+        Button details = new Button("Ver Detalles", e -> UI.getCurrent().navigate(ApplicantDetailsView.class, String.valueOf(application.getEmployee().getId().getValue())));
         
         header.add(name, details);
         description.add(header);
@@ -71,15 +73,9 @@ public class ApplicantListView extends Div implements AfterNavigationObserver {
 	
 	@Override
 	public void afterNavigation(AfterNavigationEvent event) {
-		List<JobApplication> applications = new ArrayList<>();
-		applications.add(JobApplication.createApplication(
-				new ApplicationId(0),
-				new ApplicationDate(new Date(0)),
-				new Employee(new UserId(0)),
-				new JobOffer(),
-				new ApplicationStatus(2)));
-		applications.get(0).getEmployee().setFullName(new EmployeeName("Nombre Apellido"));
-		applications.get(0).getJobOffer().setTitle(new Title("Trabajo"));
+		var service = new JobApplicationServiceMock();
+		//var service = new JobApplicationServiceSpring();
+		List<JobApplication> applications = service.getApplications();
 		grid2.setItems(applications);
 	}
 	

@@ -25,6 +25,15 @@ public class JobOffer {
     private JobOfferStatus status;
 	private Employee employee;
     
+	public JobOffer() {
+		
+	}
+	
+	public JobOffer(JobOfferId id, Title title) {
+		this.id = id;
+		this.title = title;
+	}
+	
     public JobOfferId getId() {
     	return id;
     }
