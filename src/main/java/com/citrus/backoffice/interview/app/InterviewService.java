@@ -7,5 +7,6 @@ import com.citrus.backoffice.interview.domain.Interview;
 public interface InterviewService {
 
 	List<Interview> getInterviews();
-
+	Interview getInterview(long id);
+	
 }

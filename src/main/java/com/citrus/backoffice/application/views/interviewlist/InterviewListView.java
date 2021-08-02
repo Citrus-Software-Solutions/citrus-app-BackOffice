@@ -1,6 +1,5 @@
 package com.citrus.backoffice.application.views.interviewlist;
 
-import java.awt.Button;
 import java.util.List;
 
 import com.citrus.backoffice.application.views.MainLayout;
@@ -8,13 +7,13 @@ import com.citrus.backoffice.interview.app.InterviewServiceMock;
 import com.citrus.backoffice.interview.domain.Interview;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
-import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.PageTitle;
@@ -51,35 +50,18 @@ public class InterviewListView extends Div implements AfterNavigationObserver {
         header.setSpacing(false);
         header.getThemeList().add("spacing-s");
 
-        String fullTitle = "Entrevista de " + interview.getEmployee().getId().getValue();
+        String fullTitle = "Entrevista de " + interview.getEmployee().getFullName().getValue();
         Span name = new Span(fullTitle);
         name.addClassName("name");
-               
-        header.add(name);
-
-        HorizontalLayout info = new HorizontalLayout();
-        Span duration = new Span(interview.getDuration().getValue() + " minutos");
-        duration.addClassName("duration");
         Span status = new Span("(" + interview.getStatus().getValue() + ")");
         status.addClassName("status");
-        info.add(duration, status);
+        Button details = new Button("Ver detalles", e -> UI.getCurrent().navigate(InterviewDetailsView.class, String.valueOf(interview.getId().getValue())));
+        details.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        details.addClassName("button");
+        
+        header.add(name, status, details);
 
-        HorizontalLayout actions = new HorizontalLayout();
-        actions.addClassName("actions");
-        actions.setSpacing(false);
-        actions.getThemeList().add("spacing-s");
-
-        Anchor accessInterview = new Anchor(interview.getAccessURL().getValue(), "Ingresar a la entrevista");
-        accessInterview.setTarget("_blank");
-        accessInterview.setClassName("accessbutton");
-        Icon dateIcon = VaadinIcon.CALENDAR.create();
-        dateIcon.addClassName("icon");
-        Span date = new Span(interview.getStartDate().getValue());
-        date.addClassName("date");
-
-        actions.add(dateIcon, date, accessInterview);
-
-        description.add(header, info, actions);
+        description.add(header);
         card.add(description);
         
         return card;

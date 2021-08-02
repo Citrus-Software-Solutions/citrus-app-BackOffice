@@ -32,6 +32,9 @@ public class Interview {
 		this.employee = employee;
 	}
 	
+	public Interview() {
+	}
+
 	public InterviewId getId() {
 		return id;
 	}
