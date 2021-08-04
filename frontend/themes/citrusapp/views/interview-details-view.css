@@ -1,0 +1,55 @@
+.interview-details-view {
+  display: block;
+  height: 100%;
+}
+
+.interview-details-view vaadin-grid {
+  height: 100%;
+  line-height: var(--lumo-line-height-m);
+}
+
+.interview-details-view vaadin-grid,
+.interview-details-view vaadin-grid-cell-content {
+  background-color: var(--lumo-contrast-10pct);
+}
+
+.interview-details-view .description {
+  background-color: var(--lumo-base-color);
+  border-radius: var(--lumo-border-radius);
+  box-shadow: var(--lumo-box-shadow-xs);
+  padding: calc(var(--lumo-space-s) * 1.5) var(--lumo-space-m);
+}
+
+.interview-details-view .header {
+  align-items: baseline;
+  margin-bottom: var(--lumo-space-s);
+}
+
+.interview-details-view .name {
+  font-size: var(--lumo-font-size-m);
+  font-weight: bold;
+  margin-right: var(--lumo-space-s);
+}
+
+.interview-details-view .job {
+  color: var(--lumo-tertiary-text-color);
+  font-size: var(--lumo-font-size-xs);
+}
+
+.interview-details-view .information {
+  color: var(--lumo-primary-text-color);
+  font-size: var(--lumo-font-size-s);
+  white-space: normal;
+}
+
+.interview-details-view .date {
+  color: var(--lumo-secondary-text-color);
+  font-size: var(--lumo-font-size-s);
+}
+
+.interview-details-view .icon {
+  color: var(--lumo-tertiary-text-color);
+  height: calc(var(--lumo-icon-size-s) * 0.8);
+  margin-right: var(--lumo-space-s);
+  width: calc(var(--lumo-icon-size-s) * 0.8);
+}
