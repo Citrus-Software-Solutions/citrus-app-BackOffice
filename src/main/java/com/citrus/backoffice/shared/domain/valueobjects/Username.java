@@ -1,13 +1,13 @@
 package com.citrus.backoffice.shared.domain.valueobjects;
 
 public class Username {
-    private String value;
+    private double value;
 	
-	public Username(String value) {
-		this.value = value;
+	public Username(double d) {
+		this.value = d;
 	}
 	
-	public String getValue() {
+	public double getValue() {
 		return value;
 	}
 }
