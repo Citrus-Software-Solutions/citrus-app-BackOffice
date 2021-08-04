@@ -13,6 +13,10 @@ public class User {
 	private Email email;
 	private Location location;
 	
+	public User() {
+		
+	}
+	
 	public User(UserId userId, Document document2, Username username, Email email2, Employee employee) {
 		// TODO Auto-generated constructor stub
 	}
