@@ -1,7 +1,13 @@
 package com.citrus.backoffice.interview.app;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClient.RequestHeadersSpec;
 
 import com.citrus.backoffice.employee.domain.Employee;
 import com.citrus.backoffice.employee.domain.valueobjects.EmployeeName;
@@ -12,37 +18,18 @@ import com.citrus.backoffice.interview.domain.valueobjects.InterviewId;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewStatus;
 import com.citrus.backoffice.shared.domain.valueobjects.DateFormat;
 import com.citrus.backoffice.shared.domain.valueobjects.UserId;
+import com.citrus.backoffice.shared.ports.APIPort;
 import com.fasterxml.jackson.databind.JsonNode;
 
-public class InterviewConverterMock implements InterviewConverter {
+@SuppressWarnings("serial")
+@Service
+public class InterviewAdapterMock implements Serializable, InterviewAdapter{
 
 	@Override
-	public Interview toInterview(JsonNode node) {
-		var interview = new Interview();
-		
-		interview.setId(new InterviewId(node.get("id").asLong()));
-		interview.setAccessURL(new InterviewAccessURL(node.get("access_url").asText()));
-		interview.setDuration(new InterviewDuration(node.get("duration").asDouble()));
-		interview.setEmployee(new Employee(
-				new UserId(node.get("employee").get("id").asLong()),
-				new EmployeeName(node.get("employee").get("full_name").asText())));
-		interview.setStartDate(new DateFormat(node.get("date").asText()));
-		interview.setStatus(new InterviewStatus(node.get("status").asText()));
-		
-		return interview;
-	}
-
-	@Override
-	public JsonNode toJsonNode(Interview interview) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Interview> toInterviewList(List<JsonNode> nodes) {
+	public List<Interview> getInterviews(APIPort port) {
 		List<Interview> interviews = new ArrayList<>();
 		
-		for (JsonNode n: nodes) {
+		for (JsonNode n: port.requestGetList("Interview")) {
 			interviews.add(new Interview(
 					new InterviewId(n.get("id").asLong()),
 					new DateFormat(n.get("date").asText()),
@@ -59,9 +46,20 @@ public class InterviewConverterMock implements InterviewConverter {
 	}
 
 	@Override
-	public List<JsonNode> toJsonNodeList(List<Interview> interviews) {
-		// TODO Auto-generated method stub
-		return null;
+	public Interview getInterview(APIPort port, long id) {
+		var interview = new Interview();
+		var node = port.requestGet("Interview/" + String.valueOf(id));
+		
+		interview.setId(new InterviewId(node.get("id").asLong()));
+		interview.setAccessURL(new InterviewAccessURL(node.get("access_url").asText()));
+		interview.setDuration(new InterviewDuration(node.get("duration").asDouble()));
+		interview.setEmployee(new Employee(
+				new UserId(node.get("employee").get("id").asLong()),
+				new EmployeeName(node.get("employee").get("full_name").asText())));
+		interview.setStartDate(new DateFormat(node.get("date").asText()));
+		interview.setStatus(new InterviewStatus(node.get("status").asText()));
+		
+		return interview;
 	}
-
+	
 }
