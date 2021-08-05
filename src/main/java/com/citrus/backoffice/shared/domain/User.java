@@ -11,7 +11,7 @@ public class User {
 	private Username name;
 	private Email email;
 	private Location location;
-	
+
 	public User(UserId id, Document document, Username username, Email email) {
 		this.id = id;
 		this.document = document;

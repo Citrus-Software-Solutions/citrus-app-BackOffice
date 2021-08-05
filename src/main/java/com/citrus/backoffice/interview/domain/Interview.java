@@ -1,6 +1,8 @@
 package com.citrus.backoffice.interview.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 import com.citrus.backoffice.employee.domain.Employee;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewAccessURL;
@@ -11,6 +13,9 @@ import com.citrus.backoffice.shared.domain.valueobjects.DateFormat;
 
 @Entity
 public class Interview {
+	
+	@Id
+	@GeneratedValue
 	InterviewId id;
 	Employee employee;
 	DateFormat startDate;
@@ -32,6 +37,9 @@ public class Interview {
 		this.employee = employee;
 	}
 	
+	public Interview() {
+	}
+
 	public InterviewId getId() {
 		return id;
 	}

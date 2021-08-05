@@ -1,20 +1,14 @@
 package com.citrus.backoffice.application.views.userlist;
 
-import java.awt.Button;
 import java.util.List;
 
 import com.citrus.backoffice.application.views.MainLayout;
-import com.citrus.backoffice.interview.app.InterviewServiceMock;
-import com.citrus.backoffice.interview.domain.Interview;
 import com.citrus.backoffice.shared.domain.User;
 import com.citrus.backoffice.user.app.UserServiceMock;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
-import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.AfterNavigationEvent;

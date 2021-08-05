@@ -1,26 +1,26 @@
-.interview-list-view {
+.applicant-list-view {
   display: block;
   height: 100%;
 }
 
-.interview-list-view vaadin-grid {
+.applicant-list-view vaadin-grid {
   height: 100%;
   line-height: var(--lumo-line-height-m);
 }
 
-.interview-list-view vaadin-grid,
-.interview-list-view vaadin-grid-cell-content {
+.applicant-list-view vaadin-grid,
+.applicant-list-view vaadin-grid-cell-content {
   background-color: var(--lumo-contrast-10pct);
 }
 
-.interview-list-view .card {
+.applicant-list-view .card {
   background-color: var(--lumo-base-color);
   border-radius: var(--lumo-border-radius);
   box-shadow: var(--lumo-box-shadow-xs);
   padding: calc(var(--lumo-space-s) * 1.5) var(--lumo-space-m);
 }
 
-.interview-list-view img {
+.applicant-list-view img {
   border-radius: 50%;
   flex-shrink: 0;
   height: var(--lumo-size-m);
@@ -28,34 +28,38 @@
   width: var(--lumo-size-m);
 }
 
-.interview-list-view .header {
+.applicant-list-view .header {
   align-items: baseline;
-  width: 100%;
 }
 
-.interview-list-view .name {
+.applicant-list-view .name {
   font-size: var(--lumo-font-size-s);
   font-weight: bold;
   margin-right: var(--lumo-space-s);
 }
 
-.interview-list-view .job {
+.applicant-list-view .job {
   color: var(--lumo-tertiary-text-color);
   font-size: var(--lumo-font-size-xs);
 }
 
-.interview-list-view .duration {
+.applicant-list-view .duration {
   color: var(--lumo-secondary-text-color);
   font-size: var(--lumo-font-size-s);
   white-space: normal;
 }
 
-.interview-list-view .status {
+.applicant-list-view .status {
   color: var(--lumo-tertiary-text-color);
   font-size: var(--lumo-font-size-s);
   white-space: normal;
 }
 
-.interview-list-view .button {
-  margin-left: auto;
+.applicant-list-view .date {
+  color: var(--lumo-secondary-text-color);
+  font-size: var(--lumo-font-size-s);
+}
+
+.applicant-list-view .actions {
+  align-items: center;
 }
