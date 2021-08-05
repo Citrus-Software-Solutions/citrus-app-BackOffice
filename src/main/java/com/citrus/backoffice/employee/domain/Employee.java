@@ -18,6 +18,11 @@ public class Employee extends User{
 		this.setId(id);
 	}
 	
+	public Employee(UserId id, EmployeeName fullName) {
+		this.setId(id);
+		this.setFullName(fullName);
+	}
+	
 	public Employee(
 			UserId id,
 			Document document,
