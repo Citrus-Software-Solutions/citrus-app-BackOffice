@@ -3,6 +3,7 @@ package com.citrus.backoffice.interview.app;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,14 +17,20 @@ import com.citrus.backoffice.interview.domain.valueobjects.InterviewAccessURL;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewDuration;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewId;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewStatus;
+import com.citrus.backoffice.jobapplication.domain.JobApplication;
 import com.citrus.backoffice.shared.domain.valueobjects.DateFormat;
+import com.citrus.backoffice.shared.domain.valueobjects.Document;
 import com.citrus.backoffice.shared.domain.valueobjects.UserId;
+import com.citrus.backoffice.shared.domain.valueobjects.Username;
 import com.citrus.backoffice.shared.ports.APIPort;
+import com.citrus.backoffice.staffmember.domain.StaffMember;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vaadin.example.rest.data.DataDTO;
 
 @SuppressWarnings("serial")
 @Service
-public class InterviewAdapterMock implements Serializable, InterviewAdapter{
+public class InterviewMapperSpring implements Serializable, InterviewMapper{
 
 	@Override
 	public List<Interview> getInterviews(APIPort port) {
@@ -50,7 +57,7 @@ public class InterviewAdapterMock implements Serializable, InterviewAdapter{
 		var interview = new Interview();
 		var node = port.requestGet("Interview/" + String.valueOf(id));
 		
-		interview.setId(new InterviewId(node.get("id").asLong()));
+		interview.setId(new InterviewId(id));
 		interview.setAccessURL(new InterviewAccessURL(node.get("access_url").asText()));
 		interview.setDuration(new InterviewDuration(node.get("duration").asDouble()));
 		interview.setEmployee(new Employee(
@@ -61,5 +68,4 @@ public class InterviewAdapterMock implements Serializable, InterviewAdapter{
 		
 		return interview;
 	}
-	
 }

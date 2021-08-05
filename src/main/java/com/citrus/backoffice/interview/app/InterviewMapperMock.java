@@ -2,8 +2,9 @@ package com.citrus.backoffice.interview.app;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,35 +18,21 @@ import com.citrus.backoffice.interview.domain.valueobjects.InterviewAccessURL;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewDuration;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewId;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewStatus;
-import com.citrus.backoffice.jobapplication.domain.JobApplication;
 import com.citrus.backoffice.shared.domain.valueobjects.DateFormat;
-import com.citrus.backoffice.shared.domain.valueobjects.Document;
 import com.citrus.backoffice.shared.domain.valueobjects.UserId;
-import com.citrus.backoffice.shared.domain.valueobjects.Username;
-import com.citrus.backoffice.staffmember.domain.StaffMember;
+import com.citrus.backoffice.shared.ports.APIPort;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vaadin.example.rest.data.DataDTO;
 
 @SuppressWarnings("serial")
 @Service
-public class InterviewServiceSpring implements Serializable, InterviewService{
-	@Value("${PORT: 3000}")
-	private String serverPort;
-	
+public class InterviewMapperMock implements Serializable, InterviewMapper{
+
 	@Override
-	public List<Interview> getInterviews() {
-		final String url = String.format("https://60f246b86d44f300177885e0.mockapi.io/api/Interview");
+	public List<Interview> getInterviews(APIPort port) {
 		List<Interview> interviews = new ArrayList<>();
 		
 		try {
-			//Fetch interviews from API
-			final RequestHeadersSpec<?> spec = WebClient.create().get().uri(url);
-			
-			//Map results
-			final List<JsonNode> nodes = spec.retrieve().toEntityList(JsonNode.class).block().getBody();
-			
-			for (JsonNode n: nodes) {
+			for (JsonNode n: port.requestGetList("Interview")) {
 				interviews.add(new Interview(
 						new InterviewId(n.get("id").asLong()),
 						new DateFormat(n.get("date").asText()),
@@ -57,34 +44,28 @@ public class InterviewServiceSpring implements Serializable, InterviewService{
 								new EmployeeName(n.get("employee").get("full_name").asText())
 						)));
 			}
-		} catch(Exception e) {
-			//Couldn't connect to the API
+		} catch (Exception e) {
 			interviews.add(new Interview(
-					new InterviewId(1),
-					new DateFormat("9-9-1999"),
-					new InterviewDuration(35),
-					new InterviewAccessURL("link"),
+					new InterviewId(404),
+					new DateFormat("0/0/0000"),
+					new InterviewDuration(0.0),
+					new InterviewAccessURL("about:blank"),
 					new InterviewStatus("Fallido"),
-					new Employee(new UserId(1),
-							new EmployeeName("Lopez")
+					new Employee(
+							new UserId(404),
+							new EmployeeName("Vacio")
 					)));
 		}
 		return interviews;
 	}
 
 	@Override
-	public Interview getInterview(long id) {
-		final String url = String.format("https://60f246b86d44f300177885e0.mockapi.io/api/Interview/" + String.valueOf(id));
+	public Interview getInterview(APIPort port, long id) {
 		var interview = new Interview();
+		var node = port.requestGet("Interview/" + String.valueOf(id));
 		
 		try {
-			//Fetch interviews from API
-			final RequestHeadersSpec<?> spec = WebClient.create().get().uri(url);
-			
-			//Map results
-			final JsonNode node = spec.retrieve().toEntity(JsonNode.class).block().getBody();
-			
-			interview.setId(new InterviewId(id));
+			interview.setId(new InterviewId(node.get("id").asLong()));
 			interview.setAccessURL(new InterviewAccessURL(node.get("access_url").asText()));
 			interview.setDuration(new InterviewDuration(node.get("duration").asDouble()));
 			interview.setEmployee(new Employee(
@@ -92,16 +73,24 @@ public class InterviewServiceSpring implements Serializable, InterviewService{
 					new EmployeeName(node.get("employee").get("full_name").asText())));
 			interview.setStartDate(new DateFormat(node.get("date").asText()));
 			interview.setStatus(new InterviewStatus(node.get("status").asText()));
-
-		} catch(Exception e) {
-			//Couldn't connect to the API
-			interview.setId(new InterviewId(1));
-			interview.setAccessURL(new InterviewAccessURL("https://www.google.com"));
-			interview.setDuration(new InterviewDuration(35));
-			interview.setEmployee(new Employee(new UserId(16)));
-			interview.setStartDate(new DateFormat("9-9-1999"));
-			interview.setStatus(new InterviewStatus("Agendada"));
+		} catch (Exception e) {
+			interview.setId(new InterviewId(404));
+			interview.setAccessURL(new InterviewAccessURL("about:blank"));
+			interview.setDuration(new InterviewDuration(0.0));
+			interview.setEmployee(new Employee(
+					new UserId(404),
+					new EmployeeName("Vacio")));
+			interview.setStartDate(new DateFormat("0/0/0000"));
+			interview.setStatus(new InterviewStatus("Fallido"));
 		}
+		
 		return interview;
 	}
+
+	@Override
+	public void rescheduleInterview(APIPort port, String date, Interview interview) {
+		interview.setStartDate(new DateFormat(date));
+		port.requestPut("Interview/" + String.valueOf(interview.getId().getValue()), interview);
+	}
+	
 }

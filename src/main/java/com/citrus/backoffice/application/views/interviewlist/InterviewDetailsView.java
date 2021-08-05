@@ -1,7 +1,7 @@
 package com.citrus.backoffice.application.views.interviewlist;
 
 import com.citrus.backoffice.application.views.MainLayout;
-import com.citrus.backoffice.interview.app.InterviewAdapterMock;
+import com.citrus.backoffice.interview.app.InterviewMapperMock;
 import com.citrus.backoffice.interview.domain.Interview;
 import com.citrus.backoffice.shared.ports.MockPort;
 import com.vaadin.flow.component.Text;
@@ -35,7 +35,7 @@ public class InterviewDetailsView extends Div implements HasUrlParameter<String>
 	
 	@Override
 	public void setParameter(BeforeEvent event, String parameter) {
-		var interview = new InterviewAdapterMock().getInterview(new MockPort(), Long.parseLong(parameter));
+		var interview = new InterviewMapperMock().getInterview(new MockPort(), Long.parseLong(parameter));
 		
 		if (interview != null)
 			add(renderInterview(interview));

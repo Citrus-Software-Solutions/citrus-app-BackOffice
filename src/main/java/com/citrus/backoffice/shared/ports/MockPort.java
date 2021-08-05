@@ -7,6 +7,8 @@ import org.springframework.web.reactive.function.client.WebClient.RequestHeaders
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import reactor.core.publisher.Mono;
+
 public class MockPort implements APIPort {
 
 	private final String defaultUrl = "https://60f246b86d44f300177885e0.mockapi.io/api/";
@@ -49,6 +51,17 @@ public class MockPort implements APIPort {
 			node = null;
 		}
 		return node;
+	}
+
+	@Override
+	public void requestPut(String parameter, Object o) {
+		RequestHeadersSpec<?> spec;
+		
+		spec = WebClient
+				.create()
+				.patch()
+				.uri(defaultUrl + parameter)
+				.body(Mono.just(o), o.getClass());
 	}
 
 }

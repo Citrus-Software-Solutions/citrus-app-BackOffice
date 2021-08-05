@@ -3,7 +3,7 @@ package com.citrus.backoffice.application.views.interviewlist;
 import java.util.List;
 
 import com.citrus.backoffice.application.views.MainLayout;
-import com.citrus.backoffice.interview.app.InterviewAdapterMock;
+import com.citrus.backoffice.interview.app.InterviewMapperMock;
 import com.citrus.backoffice.interview.domain.Interview;
 import com.citrus.backoffice.shared.ports.MockPort;
 import com.vaadin.flow.component.grid.Grid;
@@ -91,7 +91,7 @@ public class InterviewListView extends Div implements AfterNavigationObserver {
 	
 	@Override
 	public void afterNavigation(AfterNavigationEvent event) {
-    	List<Interview> interviews = new InterviewAdapterMock().getInterviews(new MockPort());
+    	List<Interview> interviews = new InterviewMapperMock().getInterviews(new MockPort());
     	grid2.setItems(interviews);
     	
     	if (interviews.isEmpty()) {
