@@ -32,8 +32,8 @@ public class UserServiceMock implements Serializable, UserService{
 	
 	@Override
 	public List<User> getUsers() {
-		final String url = String.format("https://60f246b86d44f300177885e0.mockapi.io/api/Interview");
-		List<User> users = new ArrayList<>(); ;
+		final String url = String.format("https://60f246b86d44f300177885e0.mockapi.io/api/User");
+		List<User> users = new ArrayList<>();
 		
 		try {
 			//Fetch interviews from API
@@ -45,12 +45,10 @@ public class UserServiceMock implements Serializable, UserService{
 			for (JsonNode n: nodes) {
 				users.add(new User(
 						new UserId(n.get("id").asLong()),
-						new Document(n.get("startDate").asLong()),
-						new Username(n.get("duration").asDouble()),
-						new Email(n.get("accessUrl").asText()),
-						
-						new Employee(new UserId(n.get("employeeId").asLong())
-						)));
+						new Document(n.get("document").asLong()),
+						new Username(n.get("username").asDouble()),
+						new Email(n.get("email").asText())
+						));
 			}		
 		} catch(Exception e) {
 			//Couldn't connect to the API

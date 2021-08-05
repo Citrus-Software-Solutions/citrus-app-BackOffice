@@ -1,6 +1,5 @@
 package com.citrus.backoffice.shared.domain;
 
-import com.citrus.backoffice.employee.domain.Employee;
 import com.citrus.backoffice.shared.domain.valueobjects.Document;
 import com.citrus.backoffice.shared.domain.valueobjects.Email;
 import com.citrus.backoffice.shared.domain.valueobjects.UserId;
@@ -13,8 +12,11 @@ public class User {
 	private Email email;
 	private Location location;
 	
-	public User(UserId userId, Document document2, Username username, Email email2, Employee employee) {
-		// TODO Auto-generated constructor stub
+	public User(UserId id, Document document, Username username, Email email) {
+		this.id = id;
+		this.document = document;
+		this.name = username;
+		this.email = email;
 	}
 
 	public UserId getId() {
