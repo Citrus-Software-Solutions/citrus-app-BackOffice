@@ -2,9 +2,13 @@ package com.citrus.backoffice.application.views.cardlist;
 
 import java.util.List;
 
-import com.citrus.backoffice.application.application_layer.ListJobOffers;
 import com.citrus.backoffice.application.views.MainLayout;
+import com.citrus.backoffice.joboffer.app.JobOfferMapperMock;
 import com.citrus.backoffice.joboffer.domain.JobOffer;
+import com.citrus.backoffice.shared.ports.MockPort;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
@@ -74,10 +78,12 @@ public class CardListView extends Div implements AfterNavigationObserver {
         String status = "(" + offer.getStatus().getValue() + ")";
         Span date = new Span(status);
         date.addClassName("date");        
-        header.add(name, date);
+        Button details = new Button("Ver detalles", e -> UI.getCurrent().navigate(JobOfferDetailsView.class, String.valueOf(offer.getId().getValue())));
+        details.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        details.addClassName("button");
+        header.add(name, date, details);
 
-        /*Span post = new Span(offer.getDescription().getValue());
-        post.addClassName("post");*/
+        
 
         HorizontalLayout actions = new HorizontalLayout();
         actions.addClassName("actions");
@@ -109,9 +115,8 @@ public class CardListView extends Div implements AfterNavigationObserver {
 
     @Override
     public void afterNavigation(AfterNavigationEvent event) {
-    	/*var controller = new JobOfferController();
-    	List<JobOffer> offers = controller.getJobOffers();*/
-    	List<JobOffer> offers = ListJobOffers.listAllOffers();
+    	List<JobOffer> offers = new JobOfferMapperMock().getJobOffers(new MockPort());
+    	//List<JobOffer> offers = ListJobOffers.listAllOffers();
     	grid2.setItems(offers);
 
     }

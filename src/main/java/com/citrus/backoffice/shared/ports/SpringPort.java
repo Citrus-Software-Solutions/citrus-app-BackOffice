@@ -7,10 +7,10 @@ import org.springframework.web.reactive.function.client.WebClient.RequestHeaders
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-public class NestPort implements APIPort {
+public class SpringPort implements APIPort {
 
-	private final String defaultUrl = "https://citrus-api-nest.herokuapp.com/api-nest/";
-	private final String backupUrl = "https://localhost:4000/";
+	private final String defaultUrl = "http://prueba-ds.herokuapp.com/";
+	private final String backupUrl = "https://localhost:3000/";
 	
 	@Override
 	public List<JsonNode> requestGetList(String parameter) {

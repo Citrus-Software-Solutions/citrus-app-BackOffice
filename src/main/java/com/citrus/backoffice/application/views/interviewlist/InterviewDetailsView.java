@@ -2,8 +2,10 @@ package com.citrus.backoffice.application.views.interviewlist;
 
 import com.citrus.backoffice.application.views.MainLayout;
 import com.citrus.backoffice.interview.app.InterviewMapperMock;
+import com.citrus.backoffice.interview.app.InterviewMapperSpring;
 import com.citrus.backoffice.interview.domain.Interview;
 import com.citrus.backoffice.shared.ports.MockPort;
+import com.citrus.backoffice.shared.ports.SpringPort;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -35,7 +37,7 @@ public class InterviewDetailsView extends Div implements HasUrlParameter<String>
 	
 	@Override
 	public void setParameter(BeforeEvent event, String parameter) {
-		var interview = new InterviewMapperMock().getInterview(new MockPort(), Long.parseLong(parameter));
+		var interview = new InterviewMapperSpring().getInterview(new SpringPort(), Long.parseLong(parameter));
 		
 		if (interview != null)
 			add(renderInterview(interview));
@@ -112,7 +114,10 @@ public class InterviewDetailsView extends Div implements HasUrlParameter<String>
         header.setSpacing(false);
         header.getThemeList().add("spacing-s");
         
-        String fullTitle = "Entrevista de " + interview.getEmployee().getFullName().getValue();
+        String fullTitle = "Entrevista de "
+		+ interview.getEmployee().getFirstName().getValue() + " "
+        + interview.getEmployee().getMiddleName().getValue() + " "
+        + interview.getEmployee().getLastName().getValue();
         Span name = new Span(fullTitle);
         name.addClassName("name");
         

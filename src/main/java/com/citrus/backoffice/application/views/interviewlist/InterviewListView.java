@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.citrus.backoffice.application.views.MainLayout;
 import com.citrus.backoffice.interview.app.InterviewMapperMock;
+import com.citrus.backoffice.interview.app.InterviewMapperSpring;
 import com.citrus.backoffice.interview.domain.Interview;
 import com.citrus.backoffice.shared.ports.MockPort;
+import com.citrus.backoffice.shared.ports.SpringPort;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
@@ -51,7 +53,10 @@ public class InterviewListView extends Div implements AfterNavigationObserver {
         header.setSpacing(false);
         header.getThemeList().add("spacing-s");
 
-        String fullTitle = "Entrevista de " + interview.getEmployee().getFullName().getValue();
+        String fullTitle = "Entrevista de "
+        + interview.getEmployee().getFirstName().getValue() + " "
+        + interview.getEmployee().getMiddleName().getValue() + " "
+        + interview.getEmployee().getLastName().getValue();
         Span name = new Span(fullTitle);
         name.addClassName("name");
         Span status = new Span("(" + interview.getStatus().getValue() + ")");
@@ -91,11 +96,13 @@ public class InterviewListView extends Div implements AfterNavigationObserver {
 	
 	@Override
 	public void afterNavigation(AfterNavigationEvent event) {
-    	List<Interview> interviews = new InterviewMapperMock().getInterviews(new MockPort());
-    	grid2.setItems(interviews);
+    	List<Interview> interviews = new InterviewMapperSpring().getInterviews(new SpringPort());
     	
-    	if (interviews.isEmpty()) {
+    	if (interviews.get(0).getId().getValue() == 404) {
     		add(noItems());
+    	}
+    	else {
+    		grid2.setItems(interviews);
     	}
 	}
 }

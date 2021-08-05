@@ -2,7 +2,11 @@ package com.citrus.backoffice.employee.domain;
 
 import com.citrus.backoffice.employee.domain.valueobjects.BirthDate;
 import com.citrus.backoffice.employee.domain.valueobjects.EmployeeName;
+import com.citrus.backoffice.employee.domain.valueobjects.FirstName;
 import com.citrus.backoffice.employee.domain.valueobjects.Gender;
+import com.citrus.backoffice.employee.domain.valueobjects.LastName;
+import com.citrus.backoffice.employee.domain.valueobjects.MiddleName;
+import com.citrus.backoffice.employee.domain.valueobjects.PhoneNumber;
 import com.citrus.backoffice.shared.domain.User;
 import com.citrus.backoffice.shared.domain.valueobjects.Document;
 import com.citrus.backoffice.shared.domain.valueobjects.Email;
@@ -10,7 +14,12 @@ import com.citrus.backoffice.shared.domain.valueobjects.UserId;
 import com.citrus.backoffice.shared.domain.valueobjects.Username;
 
 public class Employee extends User{
-    private EmployeeName fullName;
+	@Deprecated
+	private EmployeeName fullName;
+    private FirstName firstName;
+    private MiddleName middleName;
+    private LastName lastName;
+    private PhoneNumber phoneNumber;
 	private BirthDate birthDate;
 	private Gender gender;
 	
@@ -18,9 +27,11 @@ public class Employee extends User{
 		this.setId(id);
 	}
 	
-	public Employee(UserId id, EmployeeName fullName) {
+	public Employee(UserId id, FirstName firstName, MiddleName middleName, LastName lastName) {
 		this.setId(id);
-		this.setFullName(fullName);
+		this.setFirstName(firstName);
+		this.setMiddleName(middleName);
+		this.setLastName(lastName);
 	}
 	
 	public Employee(
@@ -57,5 +68,37 @@ public class Employee extends User{
 	}
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+	public FirstName getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(FirstName firstName) {
+		this.firstName = firstName;
+	}
+
+	public MiddleName getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(MiddleName middleName) {
+		this.middleName = middleName;
+	}
+
+	public LastName getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(LastName lastName) {
+		this.lastName = lastName;
+	}
+
+	public PhoneNumber getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(PhoneNumber phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 }

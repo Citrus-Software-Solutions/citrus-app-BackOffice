@@ -12,6 +12,10 @@ public class User {
 	private Email email;
 	private Location location;
 
+	public User() {
+		
+	}
+	
 	public User(UserId id, Document document, Username username, Email email) {
 		this.id = id;
 		this.document = document;

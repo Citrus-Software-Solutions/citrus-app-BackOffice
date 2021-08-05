@@ -1,22 +1,14 @@
 package com.citrus.backoffice.application.views.applicant;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.citrus.backoffice.application.views.MainLayout;
-import com.citrus.backoffice.employee.domain.Employee;
-import com.citrus.backoffice.employee.domain.valueobjects.EmployeeName;
-import com.citrus.backoffice.jobapplication.app.JobApplicationServiceMock;
+import com.citrus.backoffice.jobapplication.app.JobApplicationMapperSpring;
 import com.citrus.backoffice.jobapplication.domain.JobApplication;
-import com.citrus.backoffice.jobapplication.domain.valueobjects.ApplicationDate;
-import com.citrus.backoffice.jobapplication.domain.valueobjects.ApplicationId;
-import com.citrus.backoffice.jobapplication.domain.valueobjects.ApplicationStatus;
-import com.citrus.backoffice.joboffer.domain.JobOffer;
-import com.citrus.backoffice.joboffer.domain.valueobjects.Title;
-import com.citrus.backoffice.shared.domain.valueobjects.UserId;
+import com.citrus.backoffice.shared.ports.SpringPort;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
@@ -59,11 +51,17 @@ public class ApplicantListView extends Div implements AfterNavigationObserver {
         header.setSpacing(false);
         header.getThemeList().add("spacing-s");
 
-        String fullTitle = application.getEmployee().getFullName().getValue() + " aplicó para " + application.getJobOffer().getTitle().getValue();
+        String fullTitle = application.getEmployee().getFirstName().getValue() + " " +
+        		application.getEmployee().getMiddleName().getValue() + " " +
+        		application.getEmployee().getLastName().getValue() + 
+        		" aplicó para " +
+        		application.getJobOffer().getTitle().getValue();
         Span name = new Span(fullTitle);
         name.addClassName("name");
 
         Button details = new Button("Ver Detalles", e -> UI.getCurrent().navigate(ApplicantDetailsView.class, String.valueOf(application.getEmployee().getId().getValue())));
+        details.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        details.addClassName("button");
         
         header.add(name, details);
         description.add(header);
@@ -73,9 +71,7 @@ public class ApplicantListView extends Div implements AfterNavigationObserver {
 	
 	@Override
 	public void afterNavigation(AfterNavigationEvent event) {
-		var service = new JobApplicationServiceMock();
-		//var service = new JobApplicationServiceSpring();
-		List<JobApplication> applications = service.getApplications();
+		List<JobApplication> applications = new JobApplicationMapperSpring().getApplications(new SpringPort());
 		grid2.setItems(applications);
 	}
 	
