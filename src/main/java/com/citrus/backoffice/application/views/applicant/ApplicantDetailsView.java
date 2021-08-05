@@ -153,7 +153,7 @@ public class ApplicantDetailsView extends Div implements HasUrlParameter<String>
         addressLayout.setSpacing(false);
         addressLayout.getThemeList().add("spacing-s");
         
-        Icon locationIcon = VaadinIcon.CLIPBOARD_USER.create();
+        Icon locationIcon = VaadinIcon.MAP_MARKER.create();
         locationIcon.addClassName("icon");
         locationIcon.getStyle().set("color", "orange");
         Span locationValue = new Span(address);
