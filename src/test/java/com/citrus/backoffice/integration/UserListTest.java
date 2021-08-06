@@ -1,4 +1,4 @@
-package com.citrus.backoffice.user.app;
+package com.citrus.backoffice.integration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,8 +7,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.citrus.backoffice.shared.domain.User;
+import com.citrus.backoffice.user.app.UserServiceMock;
 
-class UserListTest {
+public class UserListTest {
 	UserServiceMock mock1;
 	List<User> mock2 = mock1.getUsers();
 	
