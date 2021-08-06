@@ -1,0 +1,65 @@
+.applicant-list-view {
+  display: block;
+  height: 100%;
+}
+
+.applicant-list-view vaadin-grid {
+  height: 100%;
+  line-height: var(--lumo-line-height-m);
+}
+
+.applicant-list-view vaadin-grid,
+.applicant-list-view vaadin-grid-cell-content {
+  background-color: var(--lumo-contrast-10pct);
+}
+
+.applicant-list-view .card {
+  background-color: var(--lumo-base-color);
+  border-radius: var(--lumo-border-radius);
+  box-shadow: var(--lumo-box-shadow-xs);
+  padding: calc(var(--lumo-space-s) * 1.5) var(--lumo-space-m);
+}
+
+.applicant-list-view img {
+  border-radius: 50%;
+  flex-shrink: 0;
+  height: var(--lumo-size-m);
+  margin-right: calc(var(--lumo-space-s) * 1.5);
+  width: var(--lumo-size-m);
+}
+
+.applicant-list-view .header {
+  align-items: baseline;
+}
+
+.applicant-list-view .name {
+  font-size: var(--lumo-font-size-s);
+  font-weight: bold;
+  margin-right: var(--lumo-space-s);
+}
+
+.applicant-list-view .job {
+  color: var(--lumo-tertiary-text-color);
+  font-size: var(--lumo-font-size-xs);
+}
+
+.applicant-list-view .duration {
+  color: var(--lumo-secondary-text-color);
+  font-size: var(--lumo-font-size-s);
+  white-space: normal;
+}
+
+.applicant-list-view .status {
+  color: var(--lumo-tertiary-text-color);
+  font-size: var(--lumo-font-size-s);
+  white-space: normal;
+}
+
+.applicant-list-view .date {
+  color: var(--lumo-secondary-text-color);
+  font-size: var(--lumo-font-size-s);
+}
+
+.applicant-list-view .actions {
+  align-items: center;
+}

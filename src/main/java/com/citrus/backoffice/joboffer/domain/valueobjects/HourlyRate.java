@@ -1,13 +1,13 @@
 package com.citrus.backoffice.joboffer.domain.valueobjects;
 
 public class HourlyRate {
-	private float value;
+	private double value;
 	
-	public HourlyRate(float value) {
-		this.value = value < 0 ? 0 : value;
+	public HourlyRate(double d) {
+		this.value = d < 0 ? 0 : d;
 	}
 	
-	public float getValue() {
+	public double getValue() {
 		return value;
 	}
 }

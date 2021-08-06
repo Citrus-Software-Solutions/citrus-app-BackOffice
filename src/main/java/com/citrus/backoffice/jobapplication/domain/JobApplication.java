@@ -5,10 +5,11 @@ import com.citrus.backoffice.jobapplication.domain.valueobjects.ApplicationDate;
 import com.citrus.backoffice.jobapplication.domain.valueobjects.ApplicationId;
 import com.citrus.backoffice.jobapplication.domain.valueobjects.ApplicationStatus;
 import com.citrus.backoffice.joboffer.domain.JobOffer;
+import com.citrus.backoffice.shared.domain.valueobjects.DateFormat;
 
 public class JobApplication {
 	ApplicationId id;
-	ApplicationDate date;
+	DateFormat date;
 	Employee employee;
 	JobOffer jobOffer;
 	ApplicationStatus status;
@@ -19,7 +20,7 @@ public class JobApplication {
 	
 	public static JobApplication createApplication(
 			ApplicationId id,
-			ApplicationDate date,
+			DateFormat date,
 			Employee employee,
 			JobOffer jobOffer,
 			ApplicationStatus status) {
@@ -40,11 +41,11 @@ public class JobApplication {
 		this.id = id;
 	}
 	
-	public ApplicationDate getDate() {
+	public DateFormat getDate() {
 		return date;
 	}
 	
-	public void setDate(ApplicationDate date) {
+	public void setDate(DateFormat date) {
 		this.date = date;
 	}
 	

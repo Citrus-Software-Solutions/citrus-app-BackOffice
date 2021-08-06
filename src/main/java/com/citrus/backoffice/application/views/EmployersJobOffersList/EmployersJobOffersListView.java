@@ -71,7 +71,7 @@ public class EmployersJobOffersListView extends Div implements AfterNavigationOb
         
         Icon shareIcon = VaadinIcon.MAP_MARKER.create();
         shareIcon.addClassName("icon");
-        String dateRange = /*"Del  " +*/ offer.getStartingDate().getValue(); // + "   al   " + offer.getFinishingDate().getValue(); 
+        String dateRange = "Hasta el  " + offer.getDeadline().getValue(); // + "   al   " + offer.getFinishingDate().getValue(); 
         Span shares = new Span(dateRange);
         shares.addClassName("dates");
 

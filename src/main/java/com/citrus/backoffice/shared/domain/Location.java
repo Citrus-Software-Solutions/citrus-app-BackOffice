@@ -23,6 +23,11 @@ public class Location {
 		this.parent = parent;
 	}
 	
+	public Location(long asLong, long asLong2, long asLong3) {
+		// TODO Auto-generated constructor stub
+		
+	}
+
 	public LocationId getId() {
 		return this.id;
 	}

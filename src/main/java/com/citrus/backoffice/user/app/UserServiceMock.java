@@ -1,4 +1,4 @@
-package com.citrus.backoffice.interview.app;
+package com.citrus.backoffice.user.app;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,24 +11,29 @@ import org.springframework.web.reactive.function.client.WebClient.RequestHeaders
 
 import com.citrus.backoffice.employee.domain.Employee;
 import com.citrus.backoffice.interview.domain.Interview;
+import com.citrus.backoffice.shared.domain.Location;
+import com.citrus.backoffice.shared.domain.User;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewAccessURL;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewDuration;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewId;
 import com.citrus.backoffice.interview.domain.valueobjects.InterviewStatus;
 import com.citrus.backoffice.shared.domain.valueobjects.DateFormat;
+import com.citrus.backoffice.shared.domain.valueobjects.Document;
+import com.citrus.backoffice.shared.domain.valueobjects.Email;
 import com.citrus.backoffice.shared.domain.valueobjects.UserId;
+import com.citrus.backoffice.shared.domain.valueobjects.Username;
 import com.fasterxml.jackson.databind.JsonNode;
 
 @SuppressWarnings("serial")
 @Service
-public class InterviewServiceMock implements Serializable, InterviewService{
+public class UserServiceMock implements Serializable, UserMapper{
 	@Value("${PORT: 3000}")
 	private String serverPort;
 	
 	@Override
-	public List<Interview> getInterviews() {
-		final String url = String.format("https://60f246b86d44f300177885e0.mockapi.io/api/Interview");
-		List<Interview> interviews = new ArrayList<>(); ;
+	public List<User> getUsers() {
+		final String url = String.format("https://60f246b86d44f300177885e0.mockapi.io/api/User");
+		List<User> users = new ArrayList<>();
 		
 		try {
 			//Fetch interviews from API
@@ -38,18 +43,18 @@ public class InterviewServiceMock implements Serializable, InterviewService{
 			final List<JsonNode> nodes = spec.retrieve().toEntityList(JsonNode.class).block().getBody();
 			
 			for (JsonNode n: nodes) {
-				interviews.add(new Interview(
-						new InterviewId(n.get("id").asLong()),
-						new DateFormat(n.get("startDate").asText()),
-						new InterviewDuration(n.get("duration").asDouble()),
-						new InterviewAccessURL(n.get("accessUrl").asText()),
-						new InterviewStatus(n.get("status").asText()),
-						new Employee(new UserId(n.get("employeeId").asLong())
-						)));
+				users.add(new User(
+						new UserId(n.get("id").asLong()),
+						new Document(n.get("document").asLong()),
+						new Username(n.get("username").asDouble()),
+						new Email(n.get("email").asText())
+						));
 			}		
 		} catch(Exception e) {
 			//Couldn't connect to the API
 		}
-		return interviews;
+		return users;
 	}
+
+	
 }

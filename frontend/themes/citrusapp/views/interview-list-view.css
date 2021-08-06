@@ -30,6 +30,7 @@
 
 .interview-list-view .header {
   align-items: baseline;
+  width: 100%;
 }
 
 .interview-list-view .name {
@@ -55,26 +56,6 @@
   white-space: normal;
 }
 
-.interview-list-view .date {
-  color: var(--lumo-secondary-text-color);
-  font-size: var(--lumo-font-size-s);
-}
-
-.interview-list-view .actions {
-  align-items: center;
-}
-
-.interview-list-view .icon {
-  color: var(--lumo-tertiary-text-color);
-  height: calc(var(--lumo-icon-size-s) * 0.8);
-  margin-right: var(--lumo-space-s);
-  width: calc(var(--lumo-icon-size-s) * 0.8);
-}
-
-.interview-list-view .likes,
-.interview-list-view .comments,
-.interview-list-view .shares {
-  color: var(--lumo-tertiary-text-color);
-  font-size: var(--lumo-font-size-xs);
-  margin-right: var(--lumo-space-l);
+.interview-list-view .button {
+  margin-left: auto;
 }
