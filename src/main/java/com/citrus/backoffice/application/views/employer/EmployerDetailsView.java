@@ -5,6 +5,9 @@ import java.util.Arrays;
 
 import com.citrus.backoffice.application.application_layer.ListJobOffers;
 import com.citrus.backoffice.application.views.MainLayout;
+import com.citrus.backoffice.employer.app.EmployerServiceMock;
+import com.citrus.backoffice.employer.domain.Employer;
+import com.citrus.backoffice.interview.domain.Interview;
 import com.citrus.backoffice.joboffer.domain.JobOffer;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -35,7 +38,18 @@ import com.vaadin.flow.component.UI;
 @PageTitle("Detalles de Empleador")
 public class EmployerDetailsView extends Div implements HasUrlParameter<String> {
 	
+	private Employer employer;
+	
+	@Override
+	public void setParameter(BeforeEvent event, String parameter) {
+		var service = new EmployerServiceMock();		
+		employer = service.getEmployer(parameter);
+		
+	}
+	
+	
 	private String id = "1";
+	//private String company_name = employer.getEmployerName();
 	private String company_name = "Empresas Polar";
 	private String address = "Avenida de Los Cortijos de Lourdes, Edificio Centro Empresarial Polar. Caracas, Venezuela.";
 	private String[] contacts = {"Antonio Domingues", "Gerente de Recursos Humanos", "+58 424-216 9483", "antoniod@rrhh.polar.com"};
@@ -54,6 +68,7 @@ public class EmployerDetailsView extends Div implements HasUrlParameter<String> 
 	};
 	
 	private String skillsString = arrayToString(skills);
+	
 	
 	public EmployerDetailsView() {
 
@@ -166,10 +181,6 @@ public class EmployerDetailsView extends Div implements HasUrlParameter<String> 
 	}
 	
 	
-	@Override
-	public void setParameter(BeforeEvent event, String parameter) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }
