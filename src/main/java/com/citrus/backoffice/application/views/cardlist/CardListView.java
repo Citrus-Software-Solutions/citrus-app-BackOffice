@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.citrus.backoffice.application.views.MainLayout;
 import com.citrus.backoffice.joboffer.app.JobOfferMapperMock;
+import com.citrus.backoffice.joboffer.app.JobOfferMapperNest;
 import com.citrus.backoffice.joboffer.domain.JobOffer;
 import com.citrus.backoffice.shared.ports.MockPort;
+import com.citrus.backoffice.shared.ports.NestPort;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -115,7 +117,7 @@ public class CardListView extends Div implements AfterNavigationObserver {
 
     @Override
     public void afterNavigation(AfterNavigationEvent event) {
-    	List<JobOffer> offers = new JobOfferMapperMock().getJobOffers(new MockPort());
+    	List<JobOffer> offers = new JobOfferMapperNest().getJobOffers(new NestPort());
     	//List<JobOffer> offers = ListJobOffers.listAllOffers();
     	grid2.setItems(offers);
 

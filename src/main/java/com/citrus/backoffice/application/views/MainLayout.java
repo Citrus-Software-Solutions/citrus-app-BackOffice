@@ -6,6 +6,7 @@ import com.citrus.backoffice.application.views.applicant.ApplicantListView;
 import com.citrus.backoffice.application.views.cardlist.CardListView;
 import com.citrus.backoffice.application.views.interviewlist.InterviewListView;
 import com.citrus.backoffice.application.views.personform.PersonFormView;
+import com.citrus.backoffice.application.views.userlist.UserListView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -87,7 +88,8 @@ public class MainLayout extends AppLayout {
         return new Tab[]{createTab("Ofertas de Trabajo", CardListView.class),
         		createTab("Crear Oferta", PersonFormView.class),
         		createTab("Entrevistas", InterviewListView.class),
-        		createTab("Aplicantes", ApplicantListView.class)};
+        		createTab("Aplicantes", ApplicantListView.class),
+        		createTab("Usuarios", UserListView.class)};
     }
 
     private static Tab createTab(String text, Class<? extends Component> navigationTarget) {

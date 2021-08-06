@@ -21,39 +21,45 @@ import com.citrus.backoffice.shared.domain.valueobjects.DateFormat;
 import com.citrus.backoffice.shared.domain.valueobjects.Document;
 import com.citrus.backoffice.shared.domain.valueobjects.Email;
 import com.citrus.backoffice.shared.domain.valueobjects.UserId;
+import com.citrus.backoffice.shared.domain.valueobjects.UserStatus;
 import com.citrus.backoffice.shared.domain.valueobjects.Username;
+import com.citrus.backoffice.shared.ports.APIPort;
 import com.fasterxml.jackson.databind.JsonNode;
 
 @SuppressWarnings("serial")
 @Service
-public class UserServiceMock implements Serializable, UserMapper{
-	@Value("${PORT: 3000}")
-	private String serverPort;
-	
+public class UserMapperNest implements Serializable, UserMapper{
+
 	@Override
-	public List<User> getUsers() {
-		final String url = String.format("https://60f246b86d44f300177885e0.mockapi.io/api/User");
+	public List<User> getUsers(APIPort port) {
 		List<User> users = new ArrayList<>();
 		
 		try {
-			//Fetch interviews from API
-			final RequestHeadersSpec<?> spec = WebClient.create().get().uri(url);
-			
-			//Map results
-			final List<JsonNode> nodes = spec.retrieve().toEntityList(JsonNode.class).block().getBody();
-			
-			for (JsonNode n: nodes) {
+			for (JsonNode n: port.requestGetList("users")) {
 				users.add(new User(
 						new UserId(n.get("id").asLong()),
-						new Document(n.get("document").asLong()),
-						new Username(n.get("username").asDouble()),
-						new Email(n.get("email").asText())
+						new Username(n.get("username").asText()),
+						new Email(n.get("email").asText()),
+						new UserStatus(n.get("status").asText())
 						));
 			}		
 		} catch(Exception e) {
 			//Couldn't connect to the API
 		}
 		return users;
+	}
+
+	@Override
+	public User getUser(APIPort port, long id) {
+		var user = new User();
+		var node = port.requestGet("users/" + String.valueOf(id));
+		
+		user.setId(new UserId(node.get("id").asLong()));
+		user.setName(new Username(node.get("username").asText()));
+		user.setEmail(new Email(node.get("email").asText()));
+		user.setStatus(new UserStatus(node.get("status").asText()));
+		
+		return user;
 	}
 
 	

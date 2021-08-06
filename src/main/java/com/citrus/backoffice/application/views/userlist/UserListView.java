@@ -3,8 +3,14 @@ package com.citrus.backoffice.application.views.userlist;
 import java.util.List;
 
 import com.citrus.backoffice.application.views.MainLayout;
+import com.citrus.backoffice.application.views.interviewlist.InterviewDetailsView;
 import com.citrus.backoffice.shared.domain.User;
+import com.citrus.backoffice.shared.ports.NestPort;
+import com.citrus.backoffice.user.app.UserMapperNest;
 import com.citrus.backoffice.user.app.UserServiceMock;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
@@ -47,35 +53,17 @@ public class UserListView extends Div implements AfterNavigationObserver {
         header.setSpacing(false);
         header.getThemeList().add("spacing-s");
 
-        String fullTitle = "Usuario de ID" + user.getId().getValue();
+        String fullTitle = user.getName().getValue();
         Span name = new Span(fullTitle);
         name.addClassName("name");
                
-        header.add(name);
+        Button details = new Button("Ver detalles", e -> UI.getCurrent().navigate(UserDetailsView.class, String.valueOf(user.getId().getValue())));
+        details.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        details.addClassName("button");
+        
+        header.add(name, details);
 
-        HorizontalLayout info = new HorizontalLayout();
-        Span duration = new Span(user.getDocument().getValue() + "documentos");
-        duration.addClassName("document");
-        Span status = new Span("(" + user.getEmail().getValue() + ")");
-        status.addClassName("email");
-        info.add(duration, status);
-
-        HorizontalLayout actions = new HorizontalLayout();
-        actions.addClassName("actions");
-        actions.setSpacing(false);
-        actions.getThemeList().add("spacing-s");
-
-       /* Anchor accessInterview = new Anchor(user.getAccessURL().getValue(), "Ver detalles de usuario");
-        accessInterview.setTarget("_blank");
-        accessInterview.setClassName("accessbutton");
-        Icon dateIcon = VaadinIcon.CALENDAR.create();
-        dateIcon.addClassName("icon");
-        Span date = new Span(user.getStartDate().getValue());
-        date.addClassName("date");
-
-        actions.add(dateIcon, date, accessInterview);*/
-
-        description.add(header, info, actions);
+        description.add(header);
         card.add(description);
         
         return card;
@@ -104,9 +92,7 @@ public class UserListView extends Div implements AfterNavigationObserver {
 	
 	@Override
 	public void afterNavigation(AfterNavigationEvent event) {
-		var service = new UserServiceMock();
-		//var service = new InterviewServiceSpring();
-    	List<User> users = service.getUsers();
+    	List<User> users = new UserMapperNest().getUsers(new NestPort());
     	grid2.setItems(users);
     	
     	if (users.isEmpty()) {

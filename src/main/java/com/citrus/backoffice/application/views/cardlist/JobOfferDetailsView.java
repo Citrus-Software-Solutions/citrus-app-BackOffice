@@ -1,10 +1,11 @@
 package com.citrus.backoffice.application.views.cardlist;
 
 import com.citrus.backoffice.application.views.MainLayout;
-import com.citrus.backoffice.application.views.interviewlist.InterviewListView;
 import com.citrus.backoffice.joboffer.app.JobOfferMapperMock;
+import com.citrus.backoffice.joboffer.app.JobOfferMapperNest;
 import com.citrus.backoffice.joboffer.domain.JobOffer;
 import com.citrus.backoffice.shared.ports.MockPort;
+import com.citrus.backoffice.shared.ports.NestPort;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -58,7 +59,7 @@ public class JobOfferDetailsView extends Div implements HasUrlParameter<String>{
 	
 	@Override
 	public void setParameter(BeforeEvent event, String parameter) {
-		var offer = new JobOfferMapperMock().getJobOffer(new MockPort(), Long.parseLong(parameter));
+		var offer = new JobOfferMapperNest().getJobOffer(new NestPort(), Long.parseLong(parameter));
 		
 		if (offer != null)
 			add(renderJobOffer(offer));
@@ -99,7 +100,7 @@ public class JobOfferDetailsView extends Div implements HasUrlParameter<String>{
         Span duration = new Span("Duracion: " + offer.getDuration().getValue() + " horas");
         duration.addClassName("information");
         Span location = null;
-        if (offer.getAddress().getStreet2().getValue() != "null") {
+        if (offer.getAddress().getStreet2().getValue() != "null" || offer.getAddress().getStreet2().getValue() != " ") {
         	location = new Span("Locacion: "
         		+ offer.getAddress().getStreet1().getValue() + ", "
         		+ offer.getAddress().getStreet2().getValue() + ", "
