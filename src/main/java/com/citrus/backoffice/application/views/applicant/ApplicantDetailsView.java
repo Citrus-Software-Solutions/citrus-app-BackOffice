@@ -3,7 +3,6 @@ package com.citrus.backoffice.application.views.applicant;
 import java.util.List;
 import java.util.Arrays;
 
-import com.citrus.backoffice.application.application_layer.ListJobOffers;
 import com.citrus.backoffice.application.views.MainLayout;
 import com.citrus.backoffice.joboffer.domain.JobOffer;
 import com.vaadin.flow.component.Component;
@@ -52,12 +51,6 @@ public class ApplicantDetailsView extends Div implements HasUrlParameter<String>
     
 	public String arrayToString (String[] myarray) {
 		String list = "";
-		/*
-		for (String[] item : array) {
-			  list = list + item[i] + ", ";
-			  i = i +1;
-			}
-		*/
 		for (int x=0;x<myarray.length;x++){				
 				list = list + myarray[x] + ", ";
 			}
@@ -68,18 +61,7 @@ public class ApplicantDetailsView extends Div implements HasUrlParameter<String>
 	
 	String workExperienceString = arrayToString(workExperience);
 	String skillsString = arrayToString(skills);
-	String referencesString = arrayToString(references);
-	
-	
-	/*
-	List<String> workExperienceList = Arrays.asList(workExperience);
-	List<String> skillsList = Arrays.asList(skills);
-	List<String> referencesList = Arrays.asList(references);
-	//
-	Grid<String> workExperienceGrid = new Grid<>();
-	Grid<String> skillsGrid = new Grid<>();
-	Grid<String> referencesGrid = new Grid<>();
-	*/
+	String referencesString = arrayToString(references); 
 	
 	public ApplicantDetailsView() {
 		addClassName("card-list-view");
@@ -102,7 +84,6 @@ public class ApplicantDetailsView extends Div implements HasUrlParameter<String>
 
         String fullTitle = firstName + " " + middleName + " " +  LastName;
         H3 name = new H3(fullTitle);
-        //name.addClassName("name");
         name.getStyle().set("color", "orange");
         
         Span ratingValue = new Span(rating);
@@ -165,18 +146,6 @@ public class ApplicantDetailsView extends Div implements HasUrlParameter<String>
         grids.addClassName("description");
         grids.setSpacing(false);
         grids.getThemeList().add("spacing-s");
-        /*
-        workExperienceGrid.setItems(workExperienceList);
-        skillsGrid.setItems(skillsList);
-        referencesGrid.setItems(referencesList);
-        
-        workExperienceGrid.setHeight("100%");
-        workExperienceGrid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS);
-        skillsGrid.setHeight("100%");
-        skillsGrid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS);
-        referencesGrid.setHeight("100%");
-        referencesGrid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS);
-        */
         
         H5 experienceTitle = new H5("Experiencia de Trabajo");
         experienceTitle.getStyle().set("color", "orange");
