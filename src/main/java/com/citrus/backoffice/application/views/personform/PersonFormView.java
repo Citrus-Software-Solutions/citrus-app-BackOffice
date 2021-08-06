@@ -102,7 +102,7 @@ public class PersonFormView extends Div {
         maxAge.setMax(110);
         vacancies.setHasControls(true);
         vacancies.setMin(1);
-        formLayout.add(postName, description, employer, status, dateFrom, dateTo, gender, salary, minAge, maxAge, vacancies, location); 
+        formLayout.add(postName, /*description,*/ employer, status, /*dateFrom, dateTo, gender,*/ salary, /*minAge, maxAge, vacancies,*/ location); 
         return formLayout;
     }
 

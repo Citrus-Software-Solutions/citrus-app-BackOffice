@@ -95,20 +95,20 @@ public class JobOfferDetailsView extends Div implements HasUrlParameter<String>{
         description.setSpacing(false);
         description.getThemeList().add("spacing-s");
         
-        Span rate = new Span("Sueldo (Por hora): " + offer.getHourlyRate().getValue());
+        Span rate = new Span("Salario (Por hora): " + offer.getHourlyRate().getValue());
         rate.addClassName("information");
-        Span duration = new Span("Duracion: " + offer.getDuration().getValue() + " horas");
+        Span duration = new Span("Duración: " + offer.getDuration().getValue() + " horas");
         duration.addClassName("information");
         Span location = null;
         if (offer.getAddress().getStreet2().getValue() != "null" || offer.getAddress().getStreet2().getValue() != " ") {
-        	location = new Span("Locacion: "
+        	location = new Span("Locación: "
         		+ offer.getAddress().getStreet1().getValue() + ", "
         		+ offer.getAddress().getStreet2().getValue() + ", "
         		+ offer.getAddress().getCity().getValue() + ", "
         		+ offer.getAddress().getState().getValue() + ", "
         		+ offer.getAddress().getZip().getValue());
         } else {
-        	location = new Span("Locacion: "
+        	location = new Span("Locación: "
             		+ offer.getAddress().getStreet1().getValue() + ", "
             		+ offer.getAddress().getCity().getValue() + ", "
             		+ offer.getAddress().getState().getValue() + ", "
