@@ -123,7 +123,7 @@ public class InterviewDetailsView extends Div implements HasUrlParameter<String>
         
         Button enter = new Button("Ingresar a la reunion");
         enter.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        Anchor anchor = new Anchor("https://www.google.com/", enter);
+        Anchor anchor = new Anchor(interview.getAccessURL().getValue(), enter);
         anchor.setTarget("_blank");
         header.add(name, anchor);
         
