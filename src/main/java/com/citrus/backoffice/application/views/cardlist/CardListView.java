@@ -26,7 +26,6 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
 @Route(value = "card-list", layout = MainLayout.class)
-@RouteAlias(value = "", layout = MainLayout.class)
 @PageTitle("Ofertas de Trabajo")
 public class CardListView extends Div implements AfterNavigationObserver {
 

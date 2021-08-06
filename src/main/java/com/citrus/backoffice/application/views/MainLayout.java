@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.citrus.backoffice.application.views.EmployersJobOffersList.EmployersJobOffersListView;
 import com.citrus.backoffice.application.views.applicant.ApplicantListView;
 import com.citrus.backoffice.application.views.cardlist.CardListView;
+import com.citrus.backoffice.application.views.home.HomeView;
 import com.citrus.backoffice.application.views.interviewlist.InterviewListView;
 import com.citrus.backoffice.application.views.personform.PersonFormView;
 import com.citrus.backoffice.application.views.userlist.UserListView;
@@ -86,7 +87,8 @@ public class MainLayout extends AppLayout {
     }
 
     private Component[] createMenuItems() {
-        return new Tab[]{createTab("Ofertas de Trabajo", CardListView.class),
+        return new Tab[]{createTab("Pagina Principal", HomeView.class),
+        		createTab("Ofertas de Trabajo", CardListView.class),
         		createTab("Crear Oferta", PersonFormView.class),
         		createTab("Entrevistas", InterviewListView.class),
         		createTab("Aplicantes", ApplicantListView.class),
